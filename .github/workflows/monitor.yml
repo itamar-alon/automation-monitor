@@ -1,24 +1,26 @@
 name: Check Automation Status
 on:
   schedule:
-    - cron: '0 */3 * * *' 
-  workflow_dispatch: 
+    - cron: '0 */3 * * *'
+  workflow_dispatch:
 
 jobs:
   check-site:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
-      
-      - name: Install Browser Dependencies
-        run: npx puppeteer browsers install chrome # פקודה קריטית לגרסאות חדשות
-      
+          cache: 'npm'
+
       - name: Install Dependencies
         run: npm install
+
+      - name: Install Puppeteer Browser
+        run: npx puppeteer browsers install chrome
 
       - name: Run Script
         env:
