@@ -1,0 +1,24 @@
+name: Check Automation Status
+on:
+  schedule:
+    - cron: '0 */3 * * *' 
+  workflow_dispatch: 
+
+jobs:
+  check-site:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Script
+        env:
+          COURIER_API_KEY: ${{ secrets.COURIER_API_KEY }}
+          MY_EMAIL: ${{ secrets.MY_EMAIL }}
+        run: node alert.js
