@@ -14,6 +14,9 @@ jobs:
         with:
           node-version: '20'
       
+      - name: Install Browser Dependencies
+        run: npx puppeteer browsers install chrome # פקודה קריטית לגרסאות חדשות
+      
       - name: Install Dependencies
         run: npm install
 
@@ -21,4 +24,6 @@ jobs:
         env:
           COURIER_API_KEY: ${{ secrets.COURIER_API_KEY }}
           MY_EMAIL: ${{ secrets.MY_EMAIL }}
+          USER_ID: ${{ secrets.USER_ID }}
+          USER_PASS: ${{ secrets.USER_PASS }}
         run: node alert.js

@@ -62,11 +62,12 @@ async function sendAlertViaCourier(zip) {
         headless: "new", 
         defaultViewport: null,
         args: [
-            '--start-maximized',
             '--no-sandbox', 
-            '--disable-setuid-sandbox'
-        ] 
-    });
+            '--disable-setuid-sandbox',
+            '--disable-dev-shm-usage', 
+            '--single-process'        
+    ] 
+});
     
     const page = await browser.newPage();
 
