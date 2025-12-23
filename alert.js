@@ -49,14 +49,13 @@ async function sendAlertViaCourier(zip) {
     const page = await browser.newPage();
     await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
     await page.setExtraHTTPHeaders({
-    'Accept-Language': 'he-IL,he;q=0.9,en-US;q=0.8,en;q=0.7'
-});
+        'Accept-Language': 'he-IL,he;q=0.9,en-US;q=0.8,en;q=0.7'
+    });
 
     try {
         console.log(`>>> Navigating to Arnona page...`);
         await page.goto('https://my.rishonlezion.muni.il/arnona/', { waitUntil: 'networkidle2' });
 
-        
         const maintenanceText = await page.evaluate(() => {
             return document.body.innerText.includes("האתר בעבודות תחזוקה");
         });
@@ -66,7 +65,6 @@ async function sendAlertViaCourier(zip) {
             return; 
         }
 
-       
         const mainLoginBtn = 'button::-p-text(התחברות)';
         await page.waitForSelector(mainLoginBtn, { visible: true, timeout: 15000 });
         await page.click(mainLoginBtn);
@@ -88,9 +86,7 @@ async function sendAlertViaCourier(zip) {
         await new Promise(r => setTimeout(r, 15000));
         await page.screenshot({ path: 'debug_arnona_screen.png', fullPage: true });
 
-  
         const isLoggedIn = await page.evaluate(() => {
-          
             return document.body.innerText.includes("ארנונה") || document.body.innerText.includes("ניתוק");
         });
 
@@ -99,7 +95,6 @@ async function sendAlertViaCourier(zip) {
             return;
         }
 
-        
         const zipValue = await page.evaluate(() => {
             const elements = Array.from(document.querySelectorAll('span, td, div, p'));
             const zipElement = elements.find(el => el.innerText && el.innerText.trim().match(/^\d{7}$/));
@@ -108,7 +103,6 @@ async function sendAlertViaCourier(zip) {
 
         console.log(`>>> Zip code found: ${zipValue}`);
 
-        
         if (zipValue && zipValue.trim() !== "7570727") {
             console.log('>>> ⚠️ Invalid Zip! Sending alert...');
             await sendAlertViaCourier(zipValue);
