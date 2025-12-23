@@ -1,0 +1,20 @@
+{
+  "name": "nitur",
+  "version": "1.0.0",
+  "description": "Automated monitoring system for municipal portal data integrity. This script logs into the Rishon LeZion municipal website, verifies specific data (like zip codes), and sends real-time alerts if discrepancies are found.",
+  "main": "alert.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itamar-alon/automation-monitor.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/itamar-alon/automation-monitor/issues"
+  },
+  "homepage": "https://github.com/itamar-alon/automation-monitor#readme"
+}
