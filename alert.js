@@ -7,31 +7,23 @@ async function sendAlertViaCourier(zip) {
     const email = process.env.MY_EMAIL;
 
     if (!apiKey || !email) {
-        console.error(">>> Error: Missing COURIER_API_KEY or MY_EMAIL in secrets/env");
+        console.error(">>> Error: Missing COURIER_API_KEY or MY_EMAIL");
         return;
     }
 
     const url = 'https://api.courier.com/send';
-    
     const body = {
         message: {
-            to: {
-                email: email
-            },
+            to: { email: email },
             content: {
                 title: "התראה: אי חזרת מידע בממשקי אוטומציה באזור האישי ⚠️",
                 body: `יש לוודא את תקינות נתוני האוטומציה בממשקים השונים באזור האישי. ערך שנמצא: ${zip}`
             },
-            routing: {
-                method: "single",
-                channels: ["email"]
-            }
+            routing: { method: "single", channels: ["email"] }
         }
     };
 
     try {
-        console.log(">>> Sending request to Courier API...");
-        
         const response = await fetch(url, {
             method: 'POST',
             headers: {
@@ -40,46 +32,38 @@ async function sendAlertViaCourier(zip) {
             },
             body: JSON.stringify(body)
         });
-
-        if (!response.ok) {
-            const errorData = await response.text();
-            throw new Error(`HTTP Error: ${response.status} - ${errorData}`);
-        }
-
         const data = await response.json();
-        console.log(`>>> ✅ Email sent successfully! Message ID: ${data.requestId}`);
-
+        console.log(`>>> ✅ Email sent! ID: ${data.requestId}`);
     } catch (error) {
         console.error(">>> ❌ Error sending email:", error.message);
     }
 }
 
-// --- Main Execution ---
 (async () => {
-    // Browser Launch Settings
     const browser = await puppeteer.launch({ 
         headless: "new", 
-        defaultViewport: { width: 1280, height: 800 }, // הגדרת גודל מסך קבוע
-        args: [
-            '--no-sandbox', 
-            '--disable-setuid-sandbox',
-            '--disable-dev-shm-usage', 
-            '--disable-gpu',
-            '--window-size=1280,800'
-        ] 
+        defaultViewport: { width: 1280, height: 800 },
+        args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'] 
     });
     
     const page = await browser.newPage();
-
-    // התחזות לדפדפן אמיתי כדי למנוע חסימות בגיטהאב
     await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
 
     try {
         console.log(`>>> Navigating to Arnona page...`);
         await page.goto('https://my.rishonlezion.muni.il/arnona/', { waitUntil: 'networkidle2' });
 
-        // Login Process
-        console.log(">>> Clicking Login button...");
+        // --- בדיקה 1: האם האתר בתחזוקה? ---
+        const maintenanceText = await page.evaluate(() => {
+            return document.body.innerText.includes("האתר בעבודות תחזוקה");
+        });
+
+        if (maintenanceText) {
+            console.log(">>> 🛑 Site is under maintenance. Skipping check and not sending email.");
+            return; 
+        }
+
+        // --- תהליך התחברות ---
         const mainLoginBtn = 'button::-p-text(התחברות)';
         await page.waitForSelector(mainLoginBtn, { visible: true, timeout: 15000 });
         await page.click(mainLoginBtn);
@@ -89,52 +73,51 @@ async function sendAlertViaCourier(zip) {
         await page.click(tabSelector);
 
         await page.waitForSelector('input[name="tz"]', { visible: true });
-        await page.type('input[name="tz"]', process.env.USER_ID, { delay: 100 });
-        await page.type('input[name="password"]', process.env.USER_PASS, { delay: 100 });
+        await page.type('input[name="tz"]', process.env.USER_ID);
+        await page.type('input[name="password"]', process.env.USER_PASS);
 
         console.log(">>> Logging in...");
         await Promise.all([
             page.keyboard.press('Enter'),
-            page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 30000 }).catch(() => {
-                console.log(">>> Note: Navigation timeout reached, continuing anyway...");
-            })
+            page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 30000 }).catch(() => {})
         ]);
 
-        // המתנה לטעינת הנתונים (הגדלתי מעט ליתר ביטחון בשרת חו"ל)
-        console.log(">>> Waiting for dashboard data to load...");
         await new Promise(r => setTimeout(r, 15000));
-
-        // צילום מסך לדיבאג - קריטי כדי להבין למה בגיטהאב זה לא מוצא
         await page.screenshot({ path: 'debug_arnona_screen.png', fullPage: true });
-        console.log(">>> Screenshot captured as debug_arnona_screen.png");
 
-        // Extract Zip Code
+  
+        const isLoggedIn = await page.evaluate(() => {
+          
+            return document.body.innerText.includes("ארנונה") || document.body.innerText.includes("ניתוק");
+        });
+
+        if (!isLoggedIn) {
+            console.log(">>> ⚠️ Could not verify successful login. Site might be blocked or slow. No email sent.");
+            return;
+        }
+
+        
         const zipValue = await page.evaluate(() => {
             const elements = Array.from(document.querySelectorAll('span, td, div, p'));
-            const zipElement = elements.find(el => {
-                const text = el.innerText ? el.innerText.trim() : "";
-                return text.match(/^\d{7}$/);
-            });
+            const zipElement = elements.find(el => el.innerText && el.innerText.trim().match(/^\d{7}$/));
             return zipElement ? zipElement.innerText.trim() : null;
         });
 
-        console.log(`>>> Zip code found on site: ${zipValue}`);
+        console.log(`>>> Zip code found: ${zipValue}`);
 
-        // --- Validation Check ---
+        
         if (zipValue && zipValue.trim() !== "7570727") {
-            console.log('>>> ⚠️ Zip code is invalid! Triggering alert...');
+            console.log('>>> ⚠️ Invalid Zip! Sending alert...');
             await sendAlertViaCourier(zipValue);
         } else if (!zipValue) {
-             console.log('>>> ⚠️ No zip code found! Triggering alert...');
-             await sendAlertViaCourier("Empty / Not Found");
+             console.log('>>> ⚠️ No zip found on a loaded page! Sending alert...');
+             await sendAlertViaCourier("Not Found");
         } else {
-            console.log('>>> ✅ Zip code is valid (7570727). No alert needed.');
+            console.log('>>> ✅ Everything is OK.');
         }
 
     } catch (error) {
-        console.error('>>> ❌ Error in process:', error.message);
-        // צילום מסך גם במקרה של קריסה
-        await page.screenshot({ path: 'error_crash.png' });
+        console.error('>>> ❌ Error:', error.message);
     } finally {
         await browser.close();
         console.log('>>> Process finished.');
