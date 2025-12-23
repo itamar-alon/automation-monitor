@@ -29,3 +29,10 @@ jobs:
           USER_ID: ${{ secrets.USER_ID }}
           USER_PASS: ${{ secrets.USER_PASS }}
         run: node alert.js
+
+      - name: Upload Screenshot on Failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-screenshots
+          path: ./*.png

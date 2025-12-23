@@ -7,7 +7,7 @@ async function sendAlertViaCourier(zip) {
     const email = process.env.MY_EMAIL;
 
     if (!apiKey || !email) {
-        console.error(">>> Error: Missing COURIER_API_KEY or MY_EMAIL in .env file");
+        console.error(">>> Error: Missing COURIER_API_KEY or MY_EMAIL in secrets/env");
         return;
     }
 
@@ -19,9 +19,8 @@ async function sendAlertViaCourier(zip) {
                 email: email
             },
             content: {
-               
                 title: "התראה: אי חזרת מידע בממשקי אוטומציה באזור האישי ⚠️",
-                body: `יש לוודא את תקינות נתוני האוטומציה בממשקים השונים באזור האישי.`
+                body: `יש לוודא את תקינות נתוני האוטומציה בממשקים השונים באזור האישי. ערך שנמצא: ${zip}`
             },
             routing: {
                 method: "single",
@@ -60,22 +59,27 @@ async function sendAlertViaCourier(zip) {
     // Browser Launch Settings
     const browser = await puppeteer.launch({ 
         headless: "new", 
-        defaultViewport: null,
+        defaultViewport: { width: 1280, height: 800 }, // הגדרת גודל מסך קבוע
         args: [
             '--no-sandbox', 
             '--disable-setuid-sandbox',
             '--disable-dev-shm-usage', 
-            '--disable-gpu'        
-    ] 
-});
+            '--disable-gpu',
+            '--window-size=1280,800'
+        ] 
+    });
     
     const page = await browser.newPage();
+
+    // התחזות לדפדפן אמיתי כדי למנוע חסימות בגיטהאב
+    await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
 
     try {
         console.log(`>>> Navigating to Arnona page...`);
         await page.goto('https://my.rishonlezion.muni.il/arnona/', { waitUntil: 'networkidle2' });
 
         // Login Process
+        console.log(">>> Clicking Login button...");
         const mainLoginBtn = 'button::-p-text(התחברות)';
         await page.waitForSelector(mainLoginBtn, { visible: true, timeout: 15000 });
         await page.click(mainLoginBtn);
@@ -91,11 +95,18 @@ async function sendAlertViaCourier(zip) {
         console.log(">>> Logging in...");
         await Promise.all([
             page.keyboard.press('Enter'),
-            page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 30000 }).catch(() => {})
+            page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 30000 }).catch(() => {
+                console.log(">>> Note: Navigation timeout reached, continuing anyway...");
+            })
         ]);
 
-        // Wait for data to load
-        await new Promise(r => setTimeout(r, 12000));
+        // המתנה לטעינת הנתונים (הגדלתי מעט ליתר ביטחון בשרת חו"ל)
+        console.log(">>> Waiting for dashboard data to load...");
+        await new Promise(r => setTimeout(r, 15000));
+
+        // צילום מסך לדיבאג - קריטי כדי להבין למה בגיטהאב זה לא מוצא
+        await page.screenshot({ path: 'debug_arnona_screen.png', fullPage: true });
+        console.log(">>> Screenshot captured as debug_arnona_screen.png");
 
         // Extract Zip Code
         const zipValue = await page.evaluate(() => {
@@ -117,11 +128,13 @@ async function sendAlertViaCourier(zip) {
              console.log('>>> ⚠️ No zip code found! Triggering alert...');
              await sendAlertViaCourier("Empty / Not Found");
         } else {
-            console.log('>>> Zip code is valid (7570727). No alert needed.');
+            console.log('>>> ✅ Zip code is valid (7570727). No alert needed.');
         }
 
     } catch (error) {
-        console.error('>>> Error in process:', error.message);
+        console.error('>>> ❌ Error in process:', error.message);
+        // צילום מסך גם במקרה של קריסה
+        await page.screenshot({ path: 'error_crash.png' });
     } finally {
         await browser.close();
         console.log('>>> Process finished.');
