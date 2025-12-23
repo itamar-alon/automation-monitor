@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/itamar-alon/automation-monitor/issues"
   },
-  "homepage": "https://github.com/itamar-alon/automation-monitor#readme"
+  "homepage": "https://github.com/itamar-alon/automation-monitor#readme",
+  "dependencies": {
+    "@trycourier/courier": "^7.3.0",
+    "puppeteer": "^24.34.0"
+  }
 }
