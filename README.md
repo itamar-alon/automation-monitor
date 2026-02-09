@@ -32,3 +32,14 @@ To run this in the cloud, add the environment variables to your GitHub Repositor
 
 📄 License
 This project is for personal monitoring use.
+
+to run the code:
+pushd \\grafana\Rizone\Projects\nitur
+node alert.js
+
+
+to run loki setup:
+.\loki-windows-amd64.exe --config.file=loki-config.yaml
+
+to run docker:
+docker-compose up -d

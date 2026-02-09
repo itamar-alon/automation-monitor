@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "W:\\Projects\\nitur\\logs\\.c990929810225f4926eac83408f58d30b8599bc2-audit.json",
+    "files": [
+        {
+            "date": 1770619643787,
+            "name": "W:\\Projects\\nitur\\logs\\rishon-app-2026-02-09.log",
+            "hash": "3186142fdd30bd0ad0eeca765bb79c94236cbd6618561d61729ab18e17029854"
+        }
+    ],
+    "hashType": "sha256"
+}

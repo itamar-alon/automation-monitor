@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "\\\\grafana\\Rizone\\Projects\\nitur\\logs\\.08aa588e575212476baea01846191c899ebd50ce-audit.json",
+    "files": [
+        {
+            "date": 1768899787497,
+            "name": "\\\\grafana\\Rizone\\Projects\\nitur\\logs\\rishon-app-2026-01-20.log",
+            "hash": "1cb587b4941a05b09a0bcf4a7613b33e6fc12b0ff0c19eb21f70adca8b7aa8e9"
+        }
+    ],
+    "hashType": "sha256"
+}

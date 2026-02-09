@@ -1,0 +1,25 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "V:\\Projects\\nitur\\logs\\.44f337747d70e2f0c5a0644600f0b973b2d5094d-audit.json",
+    "files": [
+        {
+            "date": 1769521416524,
+            "name": "V:\\Projects\\nitur\\logs\\rishon-app-2026-01-27.log",
+            "hash": "f68198dafa354a9ef485cf05a2303e7329575435183f56c163e6cbb9a97916cf"
+        },
+        {
+            "date": 1770031177146,
+            "name": "V:\\Projects\\nitur\\logs\\rishon-app-2026-02-02.log",
+            "hash": "3bc1886b23295af957e755baad1e656982518f1d18c064f35af617b28f0249ac"
+        },
+        {
+            "date": 1770620310008,
+            "name": "V:\\Projects\\nitur\\logs\\rishon-app-2026-02-09.log",
+            "hash": "b58cfb63b23aa72957f2a1d9309c1cd11713b9cf2d1645d8ffe40fcd9bb210a9"
+        }
+    ],
+    "hashType": "sha256"
+}

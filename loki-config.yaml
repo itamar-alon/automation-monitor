@@ -1,0 +1,44 @@
+auth_enabled: false
+
+server:
+  http_listen_port: 3100
+  http_listen_address: 0.0.0.0
+
+common:
+  instance_addr: 127.0.0.1
+  path_prefix: C:/Loki/data
+  storage:
+    filesystem:
+      chunks_directory: C:/Loki/data/chunks
+      rules_directory: C:/Loki/data/rules
+  replication_factor: 1
+  ring:
+    kvstore:
+      store: inmemory
+
+limits_config:
+  allow_structured_metadata: false
+
+schema_config:
+  configs:
+    - from: 2020-10-24
+      store: boltdb-shipper
+      object_store: filesystem
+      schema: v11
+      index:
+        prefix: index_
+        period: 24h
+
+storage_config:
+  boltdb_shipper:
+    active_index_directory: C:/Loki/data/index
+    cache_location: C:/Loki/data/index_cache
+  filesystem:
+    directory: C:/Loki/data/chunks
+
+# הסעיף שגרם לקריסה אצלך - וודא שהוא מצביע ל-C
+ruler:
+  storage:
+    type: local
+    local:
+      directory: C:/Loki/data/rules

@@ -1,1 +1,10 @@
-.env
+
+*.exe
+*.dll
+nodejs/
+loki-windows-amd64.exe
+logs/
+screenshots/
+node_modules/
+.envnodejs/ 
+*.exe 

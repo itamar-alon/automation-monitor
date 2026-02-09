@@ -1,0 +1,592 @@
+09-02-2026 08:00:06 [INFO]: >>> 🚀 Starting QA Automation
+09-02-2026 08:00:27 [INFO]: >>> 🔄 Checking Prod_Check (prod)
+09-02-2026 08:00:27 [INFO]: >>> ⏳ Step Started: Prod_Check__Nav
+09-02-2026 08:00:34 [INFO]: >>> ✅ Step Passed: Prod_Check__Nav
+09-02-2026 08:00:34 [INFO]: >>> ⏳ Step Started: Prod_Check__Verify_Data
+09-02-2026 08:03:34 [ERROR]: >>> 🚩 RED FLAG at step: [Prod_Check__Verify_Data]
+09-02-2026 08:03:34 [ERROR]: >>> ❌ Error Details: Data validation failed: Timeout: Data did not load
+09-02-2026 08:03:35 [INFO]: >>> 🖼️ Screenshot saved: C:\Rizone\Projects\nitur\logs\screenshots\FAIL_Prod_Check__Verify_Data__2026-02-09_06-03-34.png
+09-02-2026 08:03:35 [WARN]: >>> ⚠️ Moving on: Data validation failed: Timeout: Data did not load
+09-02-2026 08:03:35 [INFO]: >>> 🔄 Checking Test_Check (test)
+09-02-2026 08:03:35 [INFO]: >>> ⏳ Step Started: Test_Check__Nav
+09-02-2026 08:03:38 [INFO]: >>> ✅ Step Passed: Test_Check__Nav
+09-02-2026 08:03:38 [INFO]: >>> ⏳ Step Started: Test_Check__Verify_Data
+09-02-2026 08:06:39 [ERROR]: >>> 🚩 RED FLAG at step: [Test_Check__Verify_Data]
+09-02-2026 08:06:39 [ERROR]: >>> ❌ Error Details: Data validation failed: Timeout: Data did not load
+09-02-2026 08:06:39 [INFO]: >>> 🖼️ Screenshot saved: C:\Rizone\Projects\nitur\logs\screenshots\FAIL_Test_Check__Verify_Data__2026-02-09_06-06-39.png
+09-02-2026 08:06:39 [WARN]: >>> ⚠️ Moving on: Data validation failed: Timeout: Data did not load
+09-02-2026 08:06:41 [INFO]: >>> 🏁 Finished all checks.
+09-02-2026 08:47:24 [WARN]: >>> ⚠️ Cleanup warning: Command failed: taskkill /F /IM chrome.exe /T
+ERROR: The process with PID 41916 (child process of PID 38244) could not be terminated.
+Reason: There is no running instance of the task.
+
+09-02-2026 08:47:24 [INFO]: >>> 🚀 Starting QA Automation
+09-02-2026 08:47:27 [INFO]: >>> 🔄 Checking Prod_Check (prod)
+09-02-2026 08:47:27 [INFO]: >>> ⏳ Step Started: Prod_Check__Nav
+09-02-2026 08:47:33 [INFO]: >>> ✅ Step Passed: Prod_Check__Nav
+09-02-2026 08:47:33 [INFO]: >>> ⏳ Step Started: Prod_Check__Verify_Data
+09-02-2026 08:50:34 [ERROR]: >>> 🚩 RED FLAG at step: [Prod_Check__Verify_Data]
+09-02-2026 08:50:34 [ERROR]: >>> ❌ Error Details: Data validation failed: Timeout: Data did not load
+09-02-2026 08:50:34 [INFO]: >>> 🖼️ Screenshot saved: W:\Projects\nitur\logs\screenshots\FAIL_Prod_Check__Verify_Data__2026-02-09_06-50-34.png
+09-02-2026 08:50:34 [WARN]: >>> ⚠️ Moving on: Data validation failed: Timeout: Data did not load
+09-02-2026 08:50:34 [INFO]: >>> 🔄 Checking Test_Check (test)
+09-02-2026 08:50:34 [INFO]: >>> ⏳ Step Started: Test_Check__Nav
+09-02-2026 08:50:37 [INFO]: >>> ✅ Step Passed: Test_Check__Nav
+09-02-2026 08:50:37 [INFO]: >>> ⏳ Step Started: Test_Check__Verify_Data
+09-02-2026 08:53:38 [ERROR]: >>> 🚩 RED FLAG at step: [Test_Check__Verify_Data]
+09-02-2026 08:53:38 [ERROR]: >>> ❌ Error Details: Data validation failed: Timeout: Data did not load
+09-02-2026 08:53:39 [INFO]: >>> 🖼️ Screenshot saved: W:\Projects\nitur\logs\screenshots\FAIL_Test_Check__Verify_Data__2026-02-09_06-53-38.png
+09-02-2026 08:53:39 [WARN]: >>> ⚠️ Moving on: Data validation failed: Timeout: Data did not load
+09-02-2026 08:53:40 [INFO]: >>> 🏁 Finished all checks.
+09-02-2026 08:54:05 [WARN]: >>> ⚠️ Cleanup warning: Command failed: taskkill /F /IM chrome.exe /T
+ERROR: The process with PID 44196 (child process of PID 45064) could not be terminated.
+Reason: There is no running instance of the task.
+
+09-02-2026 08:54:05 [INFO]: >>> 🚀 Starting QA Automation
+09-02-2026 08:54:08 [INFO]: >>> 🔄 Checking Prod_Check (prod)
+09-02-2026 08:54:08 [INFO]: >>> ⏳ Step Started: Prod_Check__Nav
+09-02-2026 08:54:16 [INFO]: >>> ✅ Step Passed: Prod_Check__Nav
+09-02-2026 08:54:16 [INFO]: >>> ⏳ Step Started: Prod_Check__Login
+09-02-2026 08:54:16 [WARN]: >>> ⚠️ Login flow issue: page.$x is not a function
+09-02-2026 08:54:16 [INFO]: >>> ✅ Step Passed: Prod_Check__Login
+09-02-2026 08:54:16 [INFO]: >>> ⏳ Step Started: Prod_Check__Verify_Data
+09-02-2026 08:57:17 [ERROR]: >>> 🚩 RED FLAG at step: [Prod_Check__Verify_Data]
+09-02-2026 08:57:17 [ERROR]: >>> ❌ Error Details: Data validation failed: Timeout: Data did not load
+09-02-2026 08:57:18 [INFO]: >>> 🖼️ Screenshot saved: W:\Projects\nitur\logs\screenshots\FAIL_Prod_Check__Verify_Data__2026-02-09_06-57-17.png
+09-02-2026 08:57:18 [WARN]: >>> ⚠️ Moving on: Data validation failed: Timeout: Data did not load
+09-02-2026 08:57:18 [INFO]: >>> 🔄 Checking Test_Check (test)
+09-02-2026 08:57:18 [INFO]: >>> ⏳ Step Started: Test_Check__Nav
+09-02-2026 08:57:21 [INFO]: >>> ✅ Step Passed: Test_Check__Nav
+09-02-2026 08:57:21 [INFO]: >>> ⏳ Step Started: Test_Check__Login
+09-02-2026 08:57:21 [WARN]: >>> ⚠️ Login flow issue: page.$x is not a function
+09-02-2026 08:57:21 [INFO]: >>> ✅ Step Passed: Test_Check__Login
+09-02-2026 08:57:21 [INFO]: >>> ⏳ Step Started: Test_Check__Verify_Data
+09-02-2026 08:58:30 [INFO]: >>> 🧹 Zombies killed.
+09-02-2026 08:58:30 [INFO]: >>> 🚀 Starting QA Automation
+09-02-2026 08:58:32 [INFO]: >>> 🔄 Checking Prod_Check (prod)
+09-02-2026 08:58:32 [INFO]: >>> ⏳ Step Started: Prod_Check__Nav
+09-02-2026 08:58:36 [INFO]: >>> ✅ Step Passed: Prod_Check__Nav
+09-02-2026 08:58:36 [INFO]: >>> ⏳ Step Started: Prod_Check__Login
+09-02-2026 08:58:36 [INFO]: >>> 🔐 Checking for Login Gate...
+09-02-2026 08:58:36 [INFO]: >>> 🔐 Login Gate detected. Starting sequence...
+09-02-2026 08:58:36 [INFO]: >>> 🖱️ Clicked 'כניסה'
+09-02-2026 08:58:46 [WARN]: >>> ⚠️ Login flow issue: Waiting for selector `//div[contains(text(), 'באמצעות סיסמה')] | //span[contains(text(), 'באמצעות סיסמה')]` failed
+09-02-2026 08:58:47 [INFO]: >>> ✅ Step Passed: Prod_Check__Login
+09-02-2026 08:58:47 [INFO]: >>> ⏳ Step Started: Prod_Check__Verify_Data
+09-02-2026 09:01:27 [WARN]: >>> ⚠️ Cleanup warning: Command failed: taskkill /F /IM chrome.exe /T
+ERROR: The process with PID 46468 (child process of PID 28016) could not be terminated.
+Reason: There is no running instance of the task.
+
+09-02-2026 09:01:27 [INFO]: >>> 🚀 Starting QA Automation
+09-02-2026 09:01:30 [INFO]: >>> 🔄 Target: Prod_Check (prod)
+09-02-2026 09:01:30 [INFO]: >>> ⏳ Step Started: Prod_Check__Nav
+09-02-2026 09:01:34 [INFO]: >>> ✅ Step Passed: Prod_Check__Nav
+09-02-2026 09:01:34 [INFO]: >>> ⏳ Step Started: Prod_Check__Login
+09-02-2026 09:01:34 [INFO]: >>> 🔐 Starting login flow...
+09-02-2026 09:01:34 [INFO]: >>> 🖱️ Clicked top-left 'כניסה'
+09-02-2026 09:01:44 [ERROR]: >>> ❌ Login Flow Error: Waiting for selector `//div[contains(text(), 'באמצעות סיסמה')] | //span[contains(text(), 'באמצעות סיסמה')]` failed
+09-02-2026 09:01:44 [ERROR]: >>> 🚩 RED FLAG at step: [Prod_Check__Login]
+09-02-2026 09:01:44 [ERROR]: >>> ❌ Error: Waiting for selector `//div[contains(text(), 'באמצעות סיסמה')] | //span[contains(text(), 'באמצעות סיסמה')]` failed
+09-02-2026 09:01:45 [INFO]: >>> 🖼️ Screenshot saved: FAIL_Prod_Check__Login_2026-02-09_07-01-44.png
+09-02-2026 09:01:45 [WARN]: >>> ⚠️ Target Prod_Check failed: Waiting for selector `//div[contains(text(), 'באמצעות סיסמה')] | //span[contains(text(), 'באמצעות סיסמה')]` failed
+09-02-2026 09:01:45 [INFO]: >>> 🔄 Target: Test_Check (test)
+09-02-2026 09:01:45 [INFO]: >>> ⏳ Step Started: Test_Check__Nav
+09-02-2026 09:01:47 [INFO]: >>> ✅ Step Passed: Test_Check__Nav
+09-02-2026 09:01:47 [INFO]: >>> ⏳ Step Started: Test_Check__Login
+09-02-2026 09:01:47 [INFO]: >>> 🔐 Starting login flow...
+09-02-2026 09:01:47 [INFO]: >>> 🖱️ Clicked top-left 'כניסה'
+09-02-2026 09:01:57 [ERROR]: >>> ❌ Login Flow Error: Waiting for selector `//div[contains(text(), 'באמצעות סיסמה')] | //span[contains(text(), 'באמצעות סיסמה')]` failed
+09-02-2026 09:01:57 [ERROR]: >>> 🚩 RED FLAG at step: [Test_Check__Login]
+09-02-2026 09:01:57 [ERROR]: >>> ❌ Error: Waiting for selector `//div[contains(text(), 'באמצעות סיסמה')] | //span[contains(text(), 'באמצעות סיסמה')]` failed
+09-02-2026 09:01:58 [INFO]: >>> 🖼️ Screenshot saved: FAIL_Test_Check__Login_2026-02-09_07-01-57.png
+09-02-2026 09:01:58 [WARN]: >>> ⚠️ Target Test_Check failed: Waiting for selector `//div[contains(text(), 'באמצעות סיסמה')] | //span[contains(text(), 'באמצעות סיסמה')]` failed
+09-02-2026 09:01:59 [INFO]: >>> 🏁 Finished all checks.
+09-02-2026 09:03:57 [INFO]: >>> 🧹 Zombies killed.
+09-02-2026 09:03:57 [INFO]: >>> 🚀 Starting QA Automation
+09-02-2026 09:04:00 [INFO]: >>> 🔄 Checking Prod_Check (prod)
+09-02-2026 09:04:00 [INFO]: >>> ⏳ Step Started: Prod_Check__Nav
+09-02-2026 09:04:18 [INFO]: >>> ✅ Step Passed: Prod_Check__Nav
+09-02-2026 09:04:18 [INFO]: >>> ⏳ Step Started: Prod_Check__Login
+09-02-2026 09:04:18 [INFO]: >>> 🔐 Starting login flow...
+09-02-2026 09:04:18 [INFO]: >>> 🖱️ Clicked top-left 'כניסה'
+09-02-2026 09:04:20 [INFO]: >>> ⚡ Password input already visible. Skipping tab click.
+09-02-2026 09:04:20 [INFO]: >>> ✍️ Entering credentials...
+09-02-2026 09:04:21 [ERROR]: >>> ❌ Login Flow Failed: No element found for selector: input[name="password"]
+09-02-2026 09:04:21 [ERROR]: >>> 🚩 RED FLAG at step: [Prod_Check__Login]
+09-02-2026 09:04:21 [ERROR]: >>> ❌ Error: No element found for selector: input[name="password"]
+09-02-2026 09:04:22 [INFO]: >>> 🖼️ Screenshot saved: FAIL_Prod_Check__Login_2026-02-09_07-04-21.png
+09-02-2026 09:04:22 [WARN]: >>> ⚠️ Target failed: No element found for selector: input[name="password"]
+09-02-2026 09:04:22 [INFO]: >>> 🔄 Checking Test_Check (test)
+09-02-2026 09:04:22 [INFO]: >>> ⏳ Step Started: Test_Check__Nav
+09-02-2026 09:04:24 [INFO]: >>> ✅ Step Passed: Test_Check__Nav
+09-02-2026 09:04:24 [INFO]: >>> ⏳ Step Started: Test_Check__Login
+09-02-2026 09:04:24 [INFO]: >>> 🔐 Starting login flow...
+09-02-2026 09:04:24 [INFO]: >>> 🖱️ Clicked top-left 'כניסה'
+09-02-2026 09:04:26 [INFO]: >>> ⚡ Password input already visible. Skipping tab click.
+09-02-2026 09:04:26 [INFO]: >>> ✍️ Entering credentials...
+09-02-2026 09:04:27 [ERROR]: >>> ❌ Login Flow Failed: No element found for selector: input[name="password"]
+09-02-2026 09:04:27 [ERROR]: >>> 🚩 RED FLAG at step: [Test_Check__Login]
+09-02-2026 09:04:27 [ERROR]: >>> ❌ Error: No element found for selector: input[name="password"]
+09-02-2026 09:04:28 [INFO]: >>> 🖼️ Screenshot saved: FAIL_Test_Check__Login_2026-02-09_07-04-27.png
+09-02-2026 09:04:28 [WARN]: >>> ⚠️ Target failed: No element found for selector: input[name="password"]
+09-02-2026 09:04:28 [INFO]: >>> 🏁 Finished all checks.
+09-02-2026 09:09:05 [INFO]: >>> 🧹 Zombies killed.
+09-02-2026 09:09:05 [INFO]: >>> 🚀 Starting QA Automation
+09-02-2026 09:09:08 [INFO]: >>> 🔄 Checking Prod_Check (prod)
+09-02-2026 09:09:08 [INFO]: >>> ⏳ Step Started: Prod_Check__Nav
+09-02-2026 09:09:11 [INFO]: >>> ✅ Step Passed: Prod_Check__Nav
+09-02-2026 09:09:11 [INFO]: >>> ⏳ Step Started: Prod_Check__Login
+09-02-2026 09:09:11 [INFO]: >>> 🔐 Starting login flow...
+09-02-2026 09:09:11 [INFO]: >>> 🖱️ Clicked top-left 'כניסה'
+09-02-2026 09:09:13 [INFO]: >>> 🖱️ Clicked 'באמצעות סיסמה' tab
+09-02-2026 09:09:14 [INFO]: >>> ✍️ Entering credentials...
+09-02-2026 09:09:16 [INFO]: >>> 🚀 Submitting form...
+09-02-2026 09:09:16 [INFO]: >>> 🖱️ Clicked Submit (via JS)
+09-02-2026 09:09:18 [INFO]: >>> ✅ Modal closed successfully
+09-02-2026 09:09:19 [INFO]: >>> ✅ Step Passed: Prod_Check__Login
+09-02-2026 09:09:19 [INFO]: >>> ⏳ Step Started: Prod_Check__Verify_Data
+09-02-2026 09:09:29 [INFO]: >>> ✅ SUCCESS on Prod_Check
+09-02-2026 09:09:29 [INFO]: >>> ✅ Step Passed: Prod_Check__Verify_Data
+09-02-2026 09:09:29 [INFO]: >>> 🔄 Checking Test_Check (test)
+09-02-2026 09:09:29 [INFO]: >>> ⏳ Step Started: Test_Check__Nav
+09-02-2026 09:09:33 [INFO]: >>> ✅ Step Passed: Test_Check__Nav
+09-02-2026 09:09:33 [INFO]: >>> ⏳ Step Started: Test_Check__Login
+09-02-2026 09:09:33 [INFO]: >>> 🔐 Starting login flow...
+09-02-2026 09:09:33 [INFO]: >>> 🖱️ Clicked top-left 'כניסה'
+09-02-2026 09:09:35 [INFO]: >>> 🖱️ Clicked 'באמצעות סיסמה' tab
+09-02-2026 09:09:36 [INFO]: >>> ✍️ Entering credentials...
+09-02-2026 09:09:38 [INFO]: >>> 🚀 Submitting form...
+09-02-2026 09:09:38 [INFO]: >>> 🖱️ Clicked Submit (via JS)
+09-02-2026 09:09:40 [INFO]: >>> ✅ Modal closed successfully
+09-02-2026 09:09:41 [INFO]: >>> ✅ Step Passed: Test_Check__Login
+09-02-2026 09:09:41 [INFO]: >>> ⏳ Step Started: Test_Check__Verify_Data
+09-02-2026 09:12:42 [ERROR]: >>> 🚩 RED FLAG at step: [Test_Check__Verify_Data]
+09-02-2026 09:12:42 [ERROR]: >>> ❌ Error: Data validation failed: Text not found after timeout
+09-02-2026 09:12:43 [INFO]: >>> 🖼️ Screenshot saved: FAIL_Test_Check__Verify_Data_2026-02-09_07-12-42.png
+09-02-2026 09:12:43 [WARN]: >>> ⚠️ Target failed: Data validation failed: Text not found after timeout
+09-02-2026 09:12:44 [INFO]: >>> 🏁 Finished all checks.
+09-02-2026 09:16:49 [INFO]: >>> 🧹 Zombies killed.
+09-02-2026 09:16:49 [INFO]: >>> 🚀 Starting QA Automation
+09-02-2026 09:16:52 [INFO]: >>> 🔄 Checking Prod_Check (prod)
+09-02-2026 09:16:52 [INFO]: >>> ⏳ Step Started: Prod_Check__Nav
+09-02-2026 09:16:55 [INFO]: >>> ✅ Step Passed: Prod_Check__Nav
+09-02-2026 09:16:55 [INFO]: >>> ⏳ Step Started: Prod_Check__Login
+09-02-2026 09:16:55 [INFO]: >>> 🔐 Starting login flow...
+09-02-2026 09:16:56 [INFO]: >>> 🖱️ Clicked top-left 'כניסה'
+09-02-2026 09:16:58 [INFO]: >>> 🖱️ Clicked 'באמצעות סיסמה' tab
+09-02-2026 09:16:59 [INFO]: >>> ✍️ Entering credentials...
+09-02-2026 09:17:00 [INFO]: >>> 🚀 Submitting form...
+09-02-2026 09:17:01 [INFO]: >>> 🖱️ Clicked Submit (via JS)
+09-02-2026 09:17:03 [INFO]: >>> ✅ Modal closed successfully
+09-02-2026 09:17:04 [INFO]: >>> ✅ Step Passed: Prod_Check__Login
+09-02-2026 09:17:04 [INFO]: >>> ⏳ Step Started: Prod_Check__Verify_Data
+09-02-2026 09:17:22 [INFO]: >>> ✅ SUCCESS on Prod_Check
+09-02-2026 09:17:22 [INFO]: >>> ✅ Step Passed: Prod_Check__Verify_Data
+09-02-2026 09:17:22 [INFO]: >>> 🔄 Checking Test_Check (test)
+09-02-2026 09:17:22 [INFO]: >>> ⏳ Step Started: Test_Check__Nav
+09-02-2026 09:17:25 [INFO]: >>> ✅ Step Passed: Test_Check__Nav
+09-02-2026 09:17:25 [INFO]: >>> ⏳ Step Started: Test_Check__Login
+09-02-2026 09:17:25 [INFO]: >>> 🔐 Starting login flow...
+09-02-2026 09:17:25 [INFO]: >>> 🖱️ Clicked top-left 'כניסה'
+09-02-2026 09:17:27 [INFO]: >>> 🖱️ Clicked 'באמצעות סיסמה' tab
+09-02-2026 09:17:28 [INFO]: >>> ✍️ Entering credentials...
+09-02-2026 09:17:29 [INFO]: >>> 🚀 Submitting form...
+09-02-2026 09:17:29 [INFO]: >>> 🖱️ Clicked Submit (via JS)
+09-02-2026 09:17:32 [INFO]: >>> ✅ Modal closed successfully
+09-02-2026 09:17:33 [INFO]: >>> ✅ Step Passed: Test_Check__Login
+09-02-2026 09:17:33 [INFO]: >>> ⏳ Step Started: Test_Check__Verify_Data
+09-02-2026 09:20:33 [ERROR]: >>> 🚩 RED FLAG at step: [Test_Check__Verify_Data]
+09-02-2026 09:20:33 [ERROR]: >>> ❌ Error: Data validation failed: Text not found after timeout
+09-02-2026 09:20:35 [INFO]: >>> 🖼️ Screenshot saved: FAIL_Test_Check__Verify_Data_2026-02-09_07-20-33.png
+09-02-2026 09:20:35 [WARN]: >>> ⚠️ Target failed: Data validation failed: Text not found after timeout
+09-02-2026 09:20:36 [INFO]: >>> 🏁 Finished all checks.
+09-02-2026 09:26:52 [INFO]: >>> 🧹 Zombies killed.
+09-02-2026 09:26:52 [INFO]: >>> 🚀 Starting QA Automation
+09-02-2026 09:26:55 [INFO]: >>> 🔄 Checking Prod_Check (prod)
+09-02-2026 09:26:55 [INFO]: >>> ⏳ Step Started: Prod_Check__Nav
+09-02-2026 09:26:59 [INFO]: >>> ✅ Step Passed: Prod_Check__Nav
+09-02-2026 09:26:59 [INFO]: >>> ⏳ Step Started: Prod_Check__Login
+09-02-2026 09:26:59 [INFO]: >>> 🔐 Starting login flow...
+09-02-2026 09:26:59 [INFO]: >>> 🖱️ Clicked top-left 'כניסה'
+09-02-2026 09:27:01 [INFO]: >>> 🖱️ Clicked 'באמצעות סיסמה' tab
+09-02-2026 09:27:02 [INFO]: >>> ✍️ Entering credentials...
+09-02-2026 09:27:04 [INFO]: >>> 🚀 Submitting form...
+09-02-2026 09:27:04 [INFO]: >>> 🖱️ Clicked Submit (via JS)
+09-02-2026 09:27:06 [INFO]: >>> ✅ Modal closed successfully
+09-02-2026 09:27:07 [INFO]: >>> ✅ Step Passed: Prod_Check__Login
+09-02-2026 09:27:07 [INFO]: >>> ⏳ Step Started: Prod_Check__Verify_Data
+09-02-2026 09:27:12 [INFO]: >>> ✅ SUCCESS on Prod_Check
+09-02-2026 09:27:12 [INFO]: >>> ✅ Step Passed: Prod_Check__Verify_Data
+09-02-2026 09:27:12 [INFO]: >>> 🔄 Checking Test_Check (test)
+09-02-2026 09:27:12 [INFO]: >>> ⏳ Step Started: Test_Check__Nav
+09-02-2026 09:27:13 [INFO]: >>> ✅ Step Passed: Test_Check__Nav
+09-02-2026 09:27:13 [INFO]: >>> ⏳ Step Started: Test_Check__Login
+09-02-2026 09:27:13 [INFO]: >>> 🔐 Starting login flow...
+09-02-2026 09:27:14 [INFO]: >>> 🖱️ Clicked top-left 'כניסה'
+09-02-2026 09:27:16 [INFO]: >>> 🖱️ Clicked 'באמצעות סיסמה' tab
+09-02-2026 09:27:17 [INFO]: >>> ✍️ Entering credentials...
+09-02-2026 09:27:18 [INFO]: >>> 🚀 Submitting form...
+09-02-2026 09:27:18 [INFO]: >>> 🖱️ Clicked Submit (via JS)
+09-02-2026 09:27:21 [INFO]: >>> ✅ Modal closed successfully
+09-02-2026 09:27:22 [INFO]: >>> ✅ Step Passed: Test_Check__Login
+09-02-2026 09:27:22 [INFO]: >>> ⏳ Step Started: Test_Check__Verify_Data
+09-02-2026 09:30:22 [ERROR]: >>> 🚩 RED FLAG at step: [Test_Check__Verify_Data]
+09-02-2026 09:30:22 [ERROR]: >>> ❌ Error: Data validation failed: Text not found after timeout
+09-02-2026 09:30:23 [INFO]: >>> 🖼️ Screenshot saved: FAIL_Test_Check__Verify_Data_2026-02-09_07-30-22.png
+09-02-2026 09:30:23 [WARN]: >>> ⚠️ Target failed: Data validation failed: Text not found after timeout
+09-02-2026 09:30:24 [INFO]: >>> 🏁 Finished all checks.
+09-02-2026 09:37:42 [WARN]: >>> ⚠️ Cleanup warning: Command failed: taskkill /F /IM chrome.exe /T
+ERROR: The process with PID 47360 (child process of PID 27524) could not be terminated.
+Reason: There is no running instance of the task.
+
+09-02-2026 09:37:42 [INFO]: >>> 🚀 Starting QA Automation
+09-02-2026 09:37:46 [INFO]: >>> 🔄 Checking Prod_Check (prod)
+09-02-2026 09:37:46 [INFO]: >>> ⏳ Step Started: Prod_Check__Nav
+09-02-2026 09:37:48 [INFO]: >>> ✅ Step Passed: Prod_Check__Nav
+09-02-2026 09:37:48 [INFO]: >>> ⏳ Step Started: Prod_Check__Login
+09-02-2026 09:37:48 [INFO]: >>> 🔐 Starting login flow...
+09-02-2026 09:37:51 [INFO]: >>> ✍️ Entering credentials...
+09-02-2026 09:37:53 [INFO]: >>> 🚀 Submitting form...
+09-02-2026 09:37:54 [INFO]: >>> ✅ Modal closed successfully
+09-02-2026 09:37:55 [INFO]: >>> ✅ Step Passed: Prod_Check__Login
+09-02-2026 09:37:55 [INFO]: >>> ⏳ Step Started: Prod_Check__Verify_Data
+09-02-2026 09:38:01 [INFO]: >>> ✅ SUCCESS on Prod_Check
+09-02-2026 09:38:01 [INFO]: >>> ✅ Step Passed: Prod_Check__Verify_Data
+09-02-2026 09:38:01 [INFO]: >>> 🔄 Checking Test_Check (test)
+09-02-2026 09:38:01 [INFO]: >>> ⏳ Step Started: Test_Check__Nav
+09-02-2026 09:38:03 [INFO]: >>> ✅ Step Passed: Test_Check__Nav
+09-02-2026 09:38:03 [INFO]: >>> ⏳ Step Started: Test_Check__Login
+09-02-2026 09:38:03 [INFO]: >>> 🔐 Starting login flow...
+09-02-2026 09:38:06 [INFO]: >>> ✍️ Entering credentials...
+09-02-2026 09:38:07 [INFO]: >>> 🚀 Submitting form...
+09-02-2026 09:38:09 [INFO]: >>> ✅ Modal closed successfully
+09-02-2026 09:38:10 [INFO]: >>> ✅ Step Passed: Test_Check__Login
+09-02-2026 09:38:10 [INFO]: >>> ⏳ Step Started: Test_Check__Verify_Data
+09-02-2026 09:41:11 [ERROR]: >>> 🚩 RED FLAG at step: [Test_Check__Verify_Data]
+09-02-2026 09:41:11 [ERROR]: >>> ❌ Error: Data validation failed: Text not found after timeout
+09-02-2026 09:41:13 [INFO]: >>> 🖼️ Super Screenshot saved: FULL_Test_Check__Verify_Data_2026-02-09_07-41-11.png (1500px height)
+09-02-2026 09:41:13 [WARN]: >>> ⚠️ Target failed: Data validation failed: Text not found after timeout
+09-02-2026 09:41:14 [INFO]: >>> 🏁 Finished all checks.
+09-02-2026 09:43:07 [INFO]: >>> 🧹 Cleanup: Zombies killed.
+09-02-2026 09:43:07 [INFO]: >>> 🚀 Starting QA Automation
+09-02-2026 09:43:10 [INFO]: >>> 🔄 Checking Prod_Check (prod)
+09-02-2026 09:43:10 [INFO]: >>> ⏳ Step Started: Prod_Check__Nav
+09-02-2026 09:43:12 [INFO]: >>> ✅ Step Passed: Prod_Check__Nav
+09-02-2026 09:43:12 [INFO]: >>> ⏳ Step Started: Prod_Check__Login
+09-02-2026 09:43:12 [INFO]: >>> 🔐 Starting login flow...
+09-02-2026 09:43:19 [INFO]: >>> ✅ Step Passed: Prod_Check__Login
+09-02-2026 09:43:19 [INFO]: >>> ⏳ Step Started: Prod_Check__Verify_Data
+09-02-2026 09:43:19 [ERROR]: >>> 🚩 RED FLAG at step: [Prod_Check__Verify_Data]
+09-02-2026 09:43:19 [ERROR]: >>> ❌ Error: Execution context was destroyed, most likely because of a navigation.
+09-02-2026 09:43:19 [ERROR]: >>> ⚠️ Screenshot failed: page.waitForTimeout is not a function
+09-02-2026 09:43:19 [WARN]: >>> ⚠️ Target failed: Execution context was destroyed, most likely because of a navigation.
+09-02-2026 09:43:19 [INFO]: >>> 🔄 Checking Test_Check (test)
+09-02-2026 09:43:19 [INFO]: >>> ⏳ Step Started: Test_Check__Nav
+09-02-2026 09:43:22 [INFO]: >>> ✅ Step Passed: Test_Check__Nav
+09-02-2026 09:43:22 [INFO]: >>> ⏳ Step Started: Test_Check__Login
+09-02-2026 09:43:22 [INFO]: >>> 🔐 Starting login flow...
+09-02-2026 09:43:28 [INFO]: >>> ✅ Step Passed: Test_Check__Login
+09-02-2026 09:43:28 [INFO]: >>> ⏳ Step Started: Test_Check__Verify_Data
+09-02-2026 09:45:50 [INFO]: >>> 🧹 Cleanup: Zombies killed.
+09-02-2026 09:45:50 [INFO]: >>> 🚀 Starting QA Automation
+09-02-2026 09:45:53 [INFO]: >>> 🔄 Checking Prod_Check (prod)
+09-02-2026 09:45:53 [INFO]: >>> ⏳ Step Started: Prod_Check__Nav
+09-02-2026 09:45:56 [INFO]: >>> ✅ Step Passed: Prod_Check__Nav
+09-02-2026 09:45:56 [INFO]: >>> ⏳ Step Started: Prod_Check__Login
+09-02-2026 09:45:56 [INFO]: >>> 🔐 Starting login flow...
+09-02-2026 09:46:00 [INFO]: >>> ✍️ Entering credentials...
+09-02-2026 09:46:02 [INFO]: >>> 🚀 Submitting form...
+09-02-2026 09:46:06 [INFO]: >>> ✅ Modal closed successfully
+09-02-2026 09:46:07 [INFO]: >>> ✅ Step Passed: Prod_Check__Login
+09-02-2026 09:46:07 [INFO]: >>> ⏳ Step Started: Prod_Check__Verify_Data
+09-02-2026 09:46:18 [INFO]: >>> ✅ SUCCESS on Prod_Check
+09-02-2026 09:46:18 [INFO]: >>> ✅ Step Passed: Prod_Check__Verify_Data
+09-02-2026 09:46:18 [INFO]: >>> 🔄 Checking Test_Check (test)
+09-02-2026 09:46:18 [INFO]: >>> ⏳ Step Started: Test_Check__Nav
+09-02-2026 09:46:20 [INFO]: >>> ✅ Step Passed: Test_Check__Nav
+09-02-2026 09:46:20 [INFO]: >>> ⏳ Step Started: Test_Check__Login
+09-02-2026 09:46:20 [INFO]: >>> 🔐 Starting login flow...
+09-02-2026 09:46:23 [INFO]: >>> ✍️ Entering credentials...
+09-02-2026 09:46:24 [INFO]: >>> 🚀 Submitting form...
+09-02-2026 09:46:26 [INFO]: >>> ✅ Modal closed successfully
+09-02-2026 09:46:27 [INFO]: >>> ✅ Step Passed: Test_Check__Login
+09-02-2026 09:46:27 [INFO]: >>> ⏳ Step Started: Test_Check__Verify_Data
+09-02-2026 09:49:28 [ERROR]: >>> 🚩 RED FLAG at step: [Test_Check__Verify_Data]
+09-02-2026 09:49:28 [ERROR]: >>> ❌ Error: Data validation failed: Text not found after timeout
+09-02-2026 09:49:31 [INFO]: >>> 🖼️ Super Screenshot saved: FULL_Test_Check__Verify_Data_2026-02-09_07-49-28.png (1500px height)
+09-02-2026 09:49:31 [WARN]: >>> ⚠️ Target failed: Data validation failed: Text not found after timeout
+09-02-2026 09:49:32 [INFO]: >>> 🏁 Finished all checks.
+09-02-2026 09:54:22 [WARN]: >>> ⚠️ Cleanup warning: Command failed: taskkill /F /IM chrome.exe /T
+ERROR: The process with PID 48088 (child process of PID 16360) could not be terminated.
+Reason: There is no running instance of the task.
+
+09-02-2026 09:54:22 [INFO]: >>> 🚀 Starting QA Automation
+09-02-2026 09:54:25 [INFO]: >>> 🔄 Checking Prod_Check
+09-02-2026 09:54:25 [INFO]: >>> ⏳ Step Started: Prod_Check__Nav
+09-02-2026 09:54:28 [INFO]: >>> ✅ Step Passed: Prod_Check__Nav
+09-02-2026 09:54:28 [INFO]: >>> ⏳ Step Started: Prod_Check__Login
+09-02-2026 09:54:28 [INFO]: >>> 🔐 Starting login flow...
+09-02-2026 09:54:35 [ERROR]: >>> ❌ Login Failed: Waiting for selector `//button[contains(., 'באמצעות סיסמה')]` failed
+09-02-2026 09:54:35 [ERROR]: >>> 🚩 RED FLAG at step: [Prod_Check__Login]
+09-02-2026 09:54:37 [INFO]: >>> 🖼️ Screenshot saved: FAIL_Prod_Check__Login_2026-02-09_07-54-35.png
+09-02-2026 09:54:37 [WARN]: >>> ⚠️ Target failed: Waiting for selector `//button[contains(., 'באמצעות סיסמה')]` failed
+09-02-2026 09:54:37 [INFO]: >>> 🔄 Checking Test_Check
+09-02-2026 09:54:37 [INFO]: >>> ⏳ Step Started: Test_Check__Nav
+09-02-2026 09:54:40 [INFO]: >>> ✅ Step Passed: Test_Check__Nav
+09-02-2026 09:54:40 [INFO]: >>> ⏳ Step Started: Test_Check__Login
+09-02-2026 09:54:40 [INFO]: >>> 🔐 Starting login flow...
+09-02-2026 09:54:47 [ERROR]: >>> ❌ Login Failed: Waiting for selector `//button[contains(., 'באמצעות סיסמה')]` failed
+09-02-2026 09:54:47 [ERROR]: >>> 🚩 RED FLAG at step: [Test_Check__Login]
+09-02-2026 09:54:49 [INFO]: >>> 🖼️ Screenshot saved: FAIL_Test_Check__Login_2026-02-09_07-54-47.png
+09-02-2026 09:54:49 [WARN]: >>> ⚠️ Target failed: Waiting for selector `//button[contains(., 'באמצעות סיסמה')]` failed
+09-02-2026 09:54:50 [INFO]: >>> 🏁 Finished checks.
+09-02-2026 09:57:38 [INFO]: >>> 🧹 Cleanup: Zombies killed.
+09-02-2026 09:57:38 [INFO]: >>> 🚀 Starting QA Automation
+09-02-2026 09:57:41 [INFO]: >>> 🔄 Checking Prod_Check (prod)
+09-02-2026 09:57:41 [INFO]: >>> ⏳ Step Started: Prod_Check__Nav
+09-02-2026 09:57:43 [INFO]: >>> ✅ Step Passed: Prod_Check__Nav
+09-02-2026 09:57:43 [INFO]: >>> ⏳ Step Started: Prod_Check__Login
+09-02-2026 09:57:43 [INFO]: >>> 🔐 Starting login flow...
+09-02-2026 09:57:47 [INFO]: >>> ✍️ Entering credentials...
+09-02-2026 09:57:49 [INFO]: >>> 🚀 Submitting form...
+09-02-2026 09:57:51 [INFO]: >>> ✅ Modal closed successfully
+09-02-2026 09:57:54 [INFO]: >>> ✅ Step Passed: Prod_Check__Login
+09-02-2026 09:57:54 [INFO]: >>> ⏳ Step Started: Prod_Check__Verify_Data
+09-02-2026 09:58:04 [INFO]: >>> ✅ SUCCESS on Prod_Check
+09-02-2026 09:58:04 [INFO]: >>> ✅ Step Passed: Prod_Check__Verify_Data
+09-02-2026 09:58:04 [INFO]: >>> 🔄 Checking Test_Check (test)
+09-02-2026 09:58:04 [INFO]: >>> ⏳ Step Started: Test_Check__Nav
+09-02-2026 09:58:07 [INFO]: >>> ✅ Step Passed: Test_Check__Nav
+09-02-2026 09:58:07 [INFO]: >>> ⏳ Step Started: Test_Check__Login
+09-02-2026 09:58:07 [INFO]: >>> 🔐 Starting login flow...
+09-02-2026 09:58:10 [INFO]: >>> ✍️ Entering credentials...
+09-02-2026 09:58:12 [INFO]: >>> 🚀 Submitting form...
+09-02-2026 09:58:14 [INFO]: >>> ✅ Modal closed successfully
+09-02-2026 09:58:15 [INFO]: >>> ✅ Step Passed: Test_Check__Login
+09-02-2026 09:58:15 [INFO]: >>> ⏳ Step Started: Test_Check__Verify_Data
+09-02-2026 10:01:15 [ERROR]: >>> 🚩 RED FLAG at step: [Test_Check__Verify_Data]
+09-02-2026 10:01:15 [ERROR]: >>> ❌ Error: Data validation failed: Text not found after timeout
+09-02-2026 10:01:18 [INFO]: >>> 🖼️ Super Screenshot saved: FULL_Test_Check__Verify_Data_2026-02-09_08-01-15.png (1500px height)
+09-02-2026 10:01:18 [WARN]: >>> ⚠️ Target failed: Data validation failed: Text not found after timeout
+09-02-2026 10:01:18 [INFO]: >>> 🏁 Finished all checks.
+09-02-2026 10:08:54 [INFO]: >>> 🧹 Cleanup: Zombies killed.
+09-02-2026 10:08:54 [INFO]: >>> 🚀 Starting QA Automation
+09-02-2026 10:08:59 [INFO]: >>> 🔄 Checking Prod_Check (prod)
+09-02-2026 10:08:59 [INFO]: >>> ⏳ Step Started: Prod_Check__Nav
+09-02-2026 10:09:01 [INFO]: >>> ✅ Step Passed: Prod_Check__Nav
+09-02-2026 10:09:01 [INFO]: >>> ⏳ Step Started: Prod_Check__Login
+09-02-2026 10:09:01 [INFO]: >>> 🔐 Starting login flow...
+09-02-2026 10:09:08 [WARN]: >>> Could not find 'Password' tab button, maybe already selected?
+09-02-2026 10:09:13 [ERROR]: >>> ❌ Login Failed: Waiting for selector `input[name="password"]` failed
+09-02-2026 10:09:13 [ERROR]: >>> 🚩 RED FLAG at step: [Prod_Check__Login]
+09-02-2026 10:09:13 [ERROR]: >>> ❌ Error: Waiting for selector `input[name="password"]` failed
+09-02-2026 10:09:20 [INFO]: >>> 🖼️ Super Screenshot saved: FULL_Prod_Check__Login_2026-02-09_08-09-13.png (2560x1500px)
+09-02-2026 10:09:20 [WARN]: >>> ⚠️ Target failed: Waiting for selector `input[name="password"]` failed
+09-02-2026 10:09:20 [INFO]: >>> 🔄 Checking Test_Check (test)
+09-02-2026 10:09:20 [INFO]: >>> ⏳ Step Started: Test_Check__Nav
+09-02-2026 10:09:23 [INFO]: >>> ✅ Step Passed: Test_Check__Nav
+09-02-2026 10:09:23 [INFO]: >>> ⏳ Step Started: Test_Check__Login
+09-02-2026 10:09:23 [INFO]: >>> 🔐 Starting login flow...
+09-02-2026 10:09:26 [INFO]: >>> ✍️ Entering credentials...
+09-02-2026 10:09:29 [INFO]: >>> 🚀 Submitting form...
+09-02-2026 10:09:32 [INFO]: >>> ✅ Modal closed successfully
+09-02-2026 10:09:33 [INFO]: >>> ✅ Step Passed: Test_Check__Login
+09-02-2026 10:09:33 [INFO]: >>> ⏳ Step Started: Test_Check__Verify_Data
+09-02-2026 10:12:33 [ERROR]: >>> 🚩 RED FLAG at step: [Test_Check__Verify_Data]
+09-02-2026 10:12:33 [ERROR]: >>> ❌ Error: Data validation failed: Text not found after timeout
+09-02-2026 10:12:38 [INFO]: >>> 🖼️ Super Screenshot saved: FULL_Test_Check__Verify_Data_2026-02-09_08-12-33.png (2560x1500px)
+09-02-2026 10:12:38 [WARN]: >>> ⚠️ Target failed: Data validation failed: Text not found after timeout
+09-02-2026 10:12:39 [INFO]: >>> 🏁 Finished all checks.
+09-02-2026 10:17:56 [WARN]: >>> ⚠️ Cleanup warning: Command failed: taskkill /F /IM chrome.exe /T
+ERROR: The process with PID 38388 (child process of PID 43792) could not be terminated.
+Reason: There is no running instance of the task.
+
+09-02-2026 10:17:56 [INFO]: >>> 🚀 Starting QA Automation
+09-02-2026 10:17:59 [INFO]: >>> 🔄 Checking Prod_Check (prod)
+09-02-2026 10:17:59 [INFO]: >>> ⏳ Step Started: Prod_Check__Nav
+09-02-2026 10:18:03 [INFO]: >>> ✅ Step Passed: Prod_Check__Nav
+09-02-2026 10:18:03 [INFO]: >>> ⏳ Step Started: Prod_Check__Login
+09-02-2026 10:18:03 [INFO]: >>> 🔐 Starting login flow...
+09-02-2026 10:18:07 [INFO]: >>> ✍️ Entering credentials...
+09-02-2026 10:18:09 [INFO]: >>> 🚀 Submitting form...
+09-02-2026 10:18:11 [INFO]: >>> ✅ Modal closed successfully
+09-02-2026 10:18:12 [INFO]: >>> ✅ Step Passed: Prod_Check__Login
+09-02-2026 10:18:12 [INFO]: >>> ⏳ Step Started: Prod_Check__Verify_Data
+09-02-2026 10:18:19 [INFO]: >>> ✅ SUCCESS on Prod_Check
+09-02-2026 10:18:19 [INFO]: >>> ✅ Step Passed: Prod_Check__Verify_Data
+09-02-2026 10:18:19 [INFO]: >>> 🔄 Checking Test_Check (test)
+09-02-2026 10:18:19 [INFO]: >>> ⏳ Step Started: Test_Check__Nav
+09-02-2026 10:18:21 [INFO]: >>> ✅ Step Passed: Test_Check__Nav
+09-02-2026 10:18:21 [INFO]: >>> ⏳ Step Started: Test_Check__Login
+09-02-2026 10:18:21 [INFO]: >>> 🔐 Starting login flow...
+09-02-2026 10:18:25 [INFO]: >>> ✍️ Entering credentials...
+09-02-2026 10:18:26 [INFO]: >>> 🚀 Submitting form...
+09-02-2026 10:18:27 [INFO]: >>> ✅ Modal closed successfully
+09-02-2026 10:18:28 [INFO]: >>> ✅ Step Passed: Test_Check__Login
+09-02-2026 10:18:28 [INFO]: >>> ⏳ Step Started: Test_Check__Verify_Data
+09-02-2026 10:21:29 [ERROR]: >>> 🚩 RED FLAG at step: [Test_Check__Verify_Data]
+09-02-2026 10:21:29 [ERROR]: >>> ❌ Error: Data validation failed: Text not found after timeout
+09-02-2026 10:21:33 [INFO]: >>> 📐 Calculated dimensions: 3000x2000px
+09-02-2026 10:21:36 [INFO]: >>> 🖼️ Super Screenshot saved: FULL_Test_Check__Verify_Data_2026-02-09_08-21-29.png (3000x2000px)
+09-02-2026 10:21:36 [WARN]: >>> ⚠️ Target failed: Data validation failed: Text not found after timeout
+09-02-2026 10:21:36 [INFO]: >>> 🏁 Finished all checks.
+09-02-2026 11:00:09 [INFO]: >>> 🚀 Starting QA Automation
+09-02-2026 11:00:25 [INFO]: >>> 🔄 Checking Prod_Check (prod)
+09-02-2026 11:00:25 [INFO]: >>> ⏳ Step Started: Prod_Check__Nav
+09-02-2026 11:00:29 [INFO]: >>> ✅ Step Passed: Prod_Check__Nav
+09-02-2026 11:00:29 [INFO]: >>> ⏳ Step Started: Prod_Check__Login
+09-02-2026 11:00:29 [INFO]: >>> 🔐 Starting login flow...
+09-02-2026 11:00:37 [INFO]: >>> ✍️ Entering credentials...
+09-02-2026 11:00:41 [INFO]: >>> 🚀 Submitting form...
+09-02-2026 11:00:43 [INFO]: >>> ✅ Modal closed successfully
+09-02-2026 11:00:44 [INFO]: >>> ✅ Step Passed: Prod_Check__Login
+09-02-2026 11:00:44 [INFO]: >>> ⏳ Step Started: Prod_Check__Verify_Data
+09-02-2026 11:00:53 [INFO]: >>> ✅ SUCCESS on Prod_Check
+09-02-2026 11:00:53 [INFO]: >>> ✅ Step Passed: Prod_Check__Verify_Data
+09-02-2026 11:00:53 [INFO]: >>> 🔄 Checking Test_Check (test)
+09-02-2026 11:00:53 [INFO]: >>> ⏳ Step Started: Test_Check__Nav
+09-02-2026 11:00:56 [INFO]: >>> ✅ Step Passed: Test_Check__Nav
+09-02-2026 11:00:56 [INFO]: >>> ⏳ Step Started: Test_Check__Login
+09-02-2026 11:00:56 [INFO]: >>> 🔐 Starting login flow...
+09-02-2026 11:01:00 [INFO]: >>> ✍️ Entering credentials...
+09-02-2026 11:01:04 [INFO]: >>> 🚀 Submitting form...
+09-02-2026 11:01:06 [INFO]: >>> ✅ Modal closed successfully
+09-02-2026 11:01:07 [INFO]: >>> ✅ Step Passed: Test_Check__Login
+09-02-2026 11:01:07 [INFO]: >>> ⏳ Step Started: Test_Check__Verify_Data
+09-02-2026 11:04:07 [ERROR]: >>> 🚩 RED FLAG at step: [Test_Check__Verify_Data]
+09-02-2026 11:04:07 [ERROR]: >>> ❌ Error: Data validation failed: Text not found after timeout
+09-02-2026 11:04:11 [INFO]: >>> 📐 Calculated dimensions: 3000x2000px
+09-02-2026 11:04:13 [INFO]: >>> 🖼️ Super Screenshot saved: FULL_Test_Check__Verify_Data_2026-02-09_09-04-07.png (3000x2000px)
+09-02-2026 11:04:13 [WARN]: >>> ⚠️ Target failed: Data validation failed: Text not found after timeout
+09-02-2026 11:04:17 [INFO]: >>> 🏁 Finished all checks.
+09-02-2026 11:23:54 [INFO]: >>> 🧹 Cleanup: Zombies killed.
+09-02-2026 11:23:54 [INFO]: >>> 🚀 Starting QA Automation (Logic V2)
+09-02-2026 11:23:58 [INFO]: >>> 🔄 Checking Prod_Check (prod)
+09-02-2026 11:23:58 [INFO]: >>> ⏳ Step Started: Prod_Check__Nav
+09-02-2026 11:24:00 [INFO]: >>> ✅ Step Passed: Prod_Check__Nav
+09-02-2026 11:24:00 [INFO]: >>> ⏳ Step Started: Prod_Check__Login
+09-02-2026 11:24:04 [INFO]: >>> ✍️ Entering credentials...
+09-02-2026 11:24:10 [INFO]: >>> ✅ Step Passed: Prod_Check__Login
+09-02-2026 11:24:10 [INFO]: >>> ⏳ Step Started: Prod_Check__Verify_Data
+09-02-2026 11:24:16 [INFO]: >>> ✅ SUCCESS on Prod_Check
+09-02-2026 11:24:16 [INFO]: >>> ✅ Step Passed: Prod_Check__Verify_Data
+09-02-2026 11:24:16 [INFO]: >>> 🔄 Checking Test_Check (test)
+09-02-2026 11:24:16 [INFO]: >>> ⏳ Step Started: Test_Check__Nav
+09-02-2026 11:24:19 [INFO]: >>> ✅ Step Passed: Test_Check__Nav
+09-02-2026 11:24:19 [INFO]: >>> ⏳ Step Started: Test_Check__Login
+09-02-2026 11:24:23 [INFO]: >>> ✍️ Entering credentials...
+09-02-2026 11:24:26 [INFO]: >>> ✅ Step Passed: Test_Check__Login
+09-02-2026 11:24:26 [INFO]: >>> ⏳ Step Started: Test_Check__Verify_Data
+09-02-2026 11:27:27 [ERROR]: >>> 🚩 RED FLAG at step: [Test_Check__Verify_Data]
+09-02-2026 11:27:27 [ERROR]: >>> ❌ Error: Data validation failed: '7570727' not found
+09-02-2026 11:27:28 [INFO]: >>> 🖼️ Natural Screenshot saved: FAIL_Test_Check__Verify_Data_2026-02-09_09-27-27.png
+09-02-2026 11:27:28 [INFO]: >>> 📧 Alert email sent successfully via Courier. ID: 1-6989a881-6ab568b4561a0abb8d96de5c
+09-02-2026 11:27:28 [WARN]: >>> ⚠️ Target failed: Data validation failed: '7570727' not found
+09-02-2026 11:27:31 [INFO]: >>> 🏁 Finished all checks.
+09-02-2026 11:34:24 [INFO]: >>> 🧹 Cleanup: Zombies killed.
+09-02-2026 11:34:24 [INFO]: >>> 🚀 Starting QA Automation
+09-02-2026 11:34:26 [INFO]: >>> 🔄 Checking Prod_Check (prod)
+09-02-2026 11:34:26 [INFO]: >>> ⏳ Step Started: Prod_Check__Nav
+09-02-2026 11:34:28 [INFO]: >>> ✅ Step Passed: Prod_Check__Nav
+09-02-2026 11:34:28 [INFO]: >>> ⏳ Step Started: Prod_Check__Login
+09-02-2026 11:34:28 [INFO]: >>> 🔐 Starting login flow...
+09-02-2026 11:34:31 [INFO]: >>> ✍️ Entering credentials...
+09-02-2026 11:34:34 [INFO]: >>> 🚀 Submitting form...
+09-02-2026 11:34:36 [INFO]: >>> ✅ Modal closed successfully
+09-02-2026 11:34:37 [INFO]: >>> ✅ Step Passed: Prod_Check__Login
+09-02-2026 11:34:37 [INFO]: >>> ⏳ Step Started: Prod_Check__Verify_Data
+09-02-2026 11:34:46 [INFO]: >>> ✅ SUCCESS on Prod_Check
+09-02-2026 11:34:46 [INFO]: >>> ✅ Step Passed: Prod_Check__Verify_Data
+09-02-2026 11:34:46 [INFO]: >>> 🔄 Checking Test_Check (test)
+09-02-2026 11:34:46 [INFO]: >>> ⏳ Step Started: Test_Check__Nav
+09-02-2026 11:34:48 [INFO]: >>> ✅ Step Passed: Test_Check__Nav
+09-02-2026 11:34:48 [INFO]: >>> ⏳ Step Started: Test_Check__Login
+09-02-2026 11:34:48 [INFO]: >>> 🔐 Starting login flow...
+09-02-2026 11:34:51 [INFO]: >>> ✍️ Entering credentials...
+09-02-2026 11:34:53 [INFO]: >>> 🚀 Submitting form...
+09-02-2026 11:34:54 [INFO]: >>> ✅ Modal closed successfully
+09-02-2026 11:34:55 [INFO]: >>> ✅ Step Passed: Test_Check__Login
+09-02-2026 11:34:55 [INFO]: >>> ⏳ Step Started: Test_Check__Verify_Data
+09-02-2026 11:37:56 [ERROR]: >>> 🚩 RED FLAG at step: [Test_Check__Verify_Data]
+09-02-2026 11:37:56 [ERROR]: >>> ❌ Error: Data validation failed: Text not found after timeout
+09-02-2026 11:37:57 [INFO]: >>> 🖼️ Laptop-style Screenshot saved: FAIL_Test_Check__Verify_Data_2026-02-09_09-37-56.png
+09-02-2026 11:37:57 [WARN]: >>> 🔕 SIMULATION: Would have sent email to alert-rizone-automazia@rishonlezion.muni.il,itamara@rishonlezion.muni.il,davidgb@rishonlezion.muni.il,ofirl@rishonlezion.muni.il
+09-02-2026 11:37:57 [WARN]: >>> 🔕 Title:  אי חזרת מידע בממשקי אוטומציה בסביבת הטסט ⚠️
+09-02-2026 11:37:57 [WARN]: >>> ⚠️ Target failed: Data validation failed: Text not found after timeout
+09-02-2026 11:38:00 [INFO]: >>> 🏁 Finished all checks.
+09-02-2026 11:47:17 [INFO]: >>> 🧹 Cleanup: Zombies killed.
+09-02-2026 11:47:17 [INFO]: >>> 🚀 Starting QA Automation
+09-02-2026 11:47:20 [INFO]: >>> 🔄 Checking Prod_Check (prod)
+09-02-2026 11:47:20 [INFO]: >>> ⏳ Step Started: Prod_Check__Nav
+09-02-2026 11:47:22 [INFO]: >>> ✅ Step Passed: Prod_Check__Nav
+09-02-2026 11:47:22 [INFO]: >>> ⏳ Step Started: Prod_Check__Login
+09-02-2026 11:47:22 [INFO]: >>> 🔐 Starting login flow...
+09-02-2026 11:47:25 [INFO]: >>> ✍️ Entering credentials...
+09-02-2026 11:47:27 [INFO]: >>> 🚀 Submitting form...
+09-02-2026 11:47:30 [INFO]: >>> ✅ Modal closed successfully
+09-02-2026 11:47:31 [INFO]: >>> ✅ Step Passed: Prod_Check__Login
+09-02-2026 11:47:31 [INFO]: >>> ⏳ Step Started: Prod_Check__Verify_Data
+09-02-2026 11:47:35 [INFO]: >>> ✅ SUCCESS on Prod_Check
+09-02-2026 11:47:35 [INFO]: >>> ✅ Step Passed: Prod_Check__Verify_Data
+09-02-2026 11:47:35 [INFO]: >>> 🔄 Checking Test_Check (test)
+09-02-2026 11:47:35 [INFO]: >>> ⏳ Step Started: Test_Check__Nav
+09-02-2026 11:47:37 [INFO]: >>> ✅ Step Passed: Test_Check__Nav
+09-02-2026 11:47:37 [INFO]: >>> ⏳ Step Started: Test_Check__Login
+09-02-2026 11:47:37 [INFO]: >>> 🔐 Starting login flow...
+09-02-2026 11:47:40 [INFO]: >>> ✍️ Entering credentials...
+09-02-2026 11:47:41 [INFO]: >>> 🚀 Submitting form...
+09-02-2026 11:47:43 [INFO]: >>> ✅ Modal closed successfully
+09-02-2026 11:47:44 [INFO]: >>> ✅ Step Passed: Test_Check__Login
+09-02-2026 11:47:44 [INFO]: >>> ⏳ Step Started: Test_Check__Verify_Data
+09-02-2026 11:50:45 [ERROR]: >>> 🚩 RED FLAG at step: [Test_Check__Verify_Data]
+09-02-2026 11:50:45 [ERROR]: >>> ❌ Error: Data validation failed: Text not found after timeout
+09-02-2026 11:50:47 [INFO]: >>> 🖼️ Standard Screenshot saved: FAIL_Test_Check__Verify_Data_2026-02-09_09-50-45.png
+09-02-2026 11:50:48 [INFO]: >>> 📧 Alert email sent. ID: 1-6989adf8-4231238b127b225f46c46f56
+09-02-2026 11:50:48 [WARN]: >>> ⚠️ Target failed: Data validation failed: Text not found after timeout
+09-02-2026 11:50:51 [INFO]: >>> 🏁 Finished all checks.
+09-02-2026 11:54:00 [INFO]: >>> 🚀 Starting RiZone QA Automation
+09-02-2026 11:54:03 [INFO]: >>> 🔄 Checking Prod_Check
+09-02-2026 11:54:03 [INFO]: >>> ⏳ Step Started: Prod_Check__Nav
+09-02-2026 11:54:05 [INFO]: >>> ✅ Step Passed: Prod_Check__Nav
+09-02-2026 11:54:05 [INFO]: >>> ⏳ Step Started: Prod_Check__Login
+09-02-2026 11:54:05 [INFO]: >>> 🔐 Starting login flow...
+09-02-2026 11:54:12 [INFO]: >>> ✅ Step Passed: Prod_Check__Login
+09-02-2026 11:54:12 [INFO]: >>> ⏳ Step Started: Prod_Check__Verify_Data
+09-02-2026 11:54:12 [ERROR]: >>> 🚩 RED FLAG at step: [Prod_Check__Verify_Data]
+09-02-2026 11:54:12 [INFO]: >>> 🖼️ Screenshot saved (1280x800): FAIL_Prod_Check__Verify_Data_2026-02-09_09-54-12.png
+09-02-2026 11:54:12 [WARN]: >>> 🔕 SIMULATION: Would send email to alert-rizone-automazia@rishonlezion.muni.il,itamara@rishonlezion.muni.il,davidgb@rishonlezion.muni.il,ofirl@rishonlezion.muni.il
+09-02-2026 11:54:12 [WARN]: >>> ⚠️ Target failed: Execution context was destroyed, most likely because of a navigation.
+09-02-2026 11:54:12 [INFO]: >>> 🔄 Checking Test_Check
+09-02-2026 11:54:12 [INFO]: >>> ⏳ Step Started: Test_Check__Nav
+09-02-2026 11:54:16 [INFO]: >>> ✅ Step Passed: Test_Check__Nav
+09-02-2026 11:54:16 [INFO]: >>> ⏳ Step Started: Test_Check__Login
+09-02-2026 11:54:16 [INFO]: >>> 🔐 Starting login flow...
+09-02-2026 11:54:22 [INFO]: >>> ✅ Step Passed: Test_Check__Login
+09-02-2026 11:54:22 [INFO]: >>> ⏳ Step Started: Test_Check__Verify_Data
+09-02-2026 11:57:23 [ERROR]: >>> 🚩 RED FLAG at step: [Test_Check__Verify_Data]
+09-02-2026 11:57:25 [INFO]: >>> 🖼️ Screenshot saved (1280x800): FAIL_Test_Check__Verify_Data_2026-02-09_09-57-23.png
+09-02-2026 11:57:25 [WARN]: >>> 🔕 SIMULATION: Would send email to alert-rizone-automazia@rishonlezion.muni.il,itamara@rishonlezion.muni.il,davidgb@rishonlezion.muni.il,ofirl@rishonlezion.muni.il
+09-02-2026 11:57:25 [WARN]: >>> ⚠️ Target failed: Text not found after timeout
+09-02-2026 12:00:54 [INFO]: >>> 🚀 Starting RiZone QA Automation
+09-02-2026 12:00:57 [INFO]: >>> 🔄 Checking Prod_Check (prod)
+09-02-2026 12:00:57 [INFO]: >>> ⏳ Step Started: Prod_Check__Nav
+09-02-2026 12:00:59 [INFO]: >>> ✅ Step Passed: Prod_Check__Nav
+09-02-2026 12:00:59 [INFO]: >>> ⏳ Step Started: Prod_Check__Login
+09-02-2026 12:00:59 [INFO]: >>> 🔐 Starting login flow...
+09-02-2026 12:01:05 [INFO]: >>> ✅ Step Passed: Prod_Check__Login
+09-02-2026 12:01:05 [INFO]: >>> ⏳ Step Started: Prod_Check__Verify_Data
+09-02-2026 12:01:05 [INFO]: >>> ⏳ Waiting for heavy data to load...
+09-02-2026 12:01:13 [INFO]: >>> ✅ SUCCESS on Prod_Check
+09-02-2026 12:01:13 [INFO]: >>> ✅ Step Passed: Prod_Check__Verify_Data
+09-02-2026 12:01:13 [INFO]: >>> 🔄 Checking Test_Check (test)
+09-02-2026 12:01:13 [INFO]: >>> ⏳ Step Started: Test_Check__Nav
+09-02-2026 12:01:15 [INFO]: >>> ✅ Step Passed: Test_Check__Nav
+09-02-2026 12:01:15 [INFO]: >>> ⏳ Step Started: Test_Check__Login
+09-02-2026 12:01:15 [INFO]: >>> 🔐 Starting login flow...
+09-02-2026 12:01:22 [INFO]: >>> ✅ Step Passed: Test_Check__Login
+09-02-2026 12:01:22 [INFO]: >>> ⏳ Step Started: Test_Check__Verify_Data
+09-02-2026 12:01:22 [INFO]: >>> ⏳ Waiting for heavy data to load...
+09-02-2026 12:04:29 [ERROR]: >>> 🚩 RED FLAG at step: [Test_Check__Verify_Data]
+09-02-2026 12:04:29 [INFO]: >>> 🖼️ Screenshot saved: FAIL_Test_Check__Verify_Data_2026-02-09_10-04-29.png
+09-02-2026 12:04:29 [WARN]: >>> 🔕 SIMULATION: Would send email to alert-rizone-automazia@rishonlezion.muni.il,itamara@rishonlezion.muni.il,davidgb@rishonlezion.muni.il,ofirl@rishonlezion.muni.il
+09-02-2026 12:04:29 [WARN]: >>> ⚠️ Target failed: Data validation failed: Expected text not found after full timeout
