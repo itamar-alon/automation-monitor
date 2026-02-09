@@ -8,3 +8,4 @@ screenshots/
 node_modules/
 .envnodejs/ 
 *.exe 
+.env
