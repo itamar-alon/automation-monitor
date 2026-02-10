@@ -6,11 +6,6 @@
     "auditLog": "C:\\Rizone\\Projects\\nitur\\logs\\.57e21221f6b3a69668ff16b4f8c0c431b207b487-audit.json",
     "files": [
         {
-            "date": 1769407207945,
-            "name": "C:\\Rizone\\Projects\\nitur\\logs\\rishon-app-2026-01-26.log",
-            "hash": "16d6b687a04c32ad6b79c2f2dab2f9cc9ae7d8a35dcab97fcadfedae98f95949"
-        },
-        {
             "date": 1769493607089,
             "name": "C:\\Rizone\\Projects\\nitur\\logs\\rishon-app-2026-01-27.log",
             "hash": "0d7e2e52bd94479717bc42614a51554dde40344c4ba8f1dcacfdd92c98d2fd12"
@@ -79,6 +74,11 @@
             "date": 1770616805754,
             "name": "C:\\Rizone\\Projects\\nitur\\logs\\rishon-app-2026-02-09.log",
             "hash": "1d45ca0f35786d4429a33f2c630612b2d967d0b6141f02e7452c9ea506e9193a"
+        },
+        {
+            "date": 1770703206534,
+            "name": "C:\\Rizone\\Projects\\nitur\\logs\\rishon-app-2026-02-10.log",
+            "hash": "33c479936ce7271b6750338a1b9455057d10381517a5bcceb156a7cbcbacdbdf"
         }
     ],
     "hashType": "sha256"

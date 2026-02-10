@@ -613,3 +613,52 @@ Reason: There is no running instance of the task.
 09-02-2026 14:04:00 [INFO]: >>> 🖼️ Screenshot saved: FAIL_Test_Check__Verify_Data_2026-02-09_12-04-00.png
 09-02-2026 14:04:00 [WARN]: >>> 🔕 SIMULATION: Would send email to alert-rizone-automazia@rishonlezion.muni.il,itamara@rishonlezion.muni.il,davidgb@rishonlezion.muni.il,ofirl@rishonlezion.muni.il
 09-02-2026 14:04:00 [WARN]: >>> ⚠️ Target failed: Data validation failed: Expected text not found after full timeout
+09-02-2026 15:00:02 [INFO]: >>> 🧹 Cleanup: Zombies killed.
+09-02-2026 15:00:02 [INFO]: >>> 🚀 Starting RiZone QA Automation
+09-02-2026 15:00:05 [INFO]: >>> 🔄 Checking Prod_Check (prod)
+09-02-2026 15:00:05 [INFO]: >>> ⏳ Step Started: Prod_Check__Nav
+09-02-2026 15:00:17 [INFO]: >>> ✅ Step Passed: Prod_Check__Nav
+09-02-2026 15:00:17 [INFO]: >>> ⏳ Step Started: Prod_Check__Login
+09-02-2026 15:00:17 [INFO]: >>> 🔐 Starting login flow...
+09-02-2026 15:00:27 [INFO]: >>> ✅ Step Passed: Prod_Check__Login
+09-02-2026 15:00:27 [INFO]: >>> ⏳ Step Started: Prod_Check__Verify_Data
+09-02-2026 15:00:27 [INFO]: >>> ⏳ Waiting for heavy data to load...
+09-02-2026 15:00:33 [INFO]: >>> ✅ SUCCESS on Prod_Check
+09-02-2026 15:00:33 [INFO]: >>> ✅ Step Passed: Prod_Check__Verify_Data
+09-02-2026 15:00:33 [INFO]: >>> 🔄 Checking Test_Check (test)
+09-02-2026 15:00:33 [INFO]: >>> ⏳ Step Started: Test_Check__Nav
+09-02-2026 15:00:35 [INFO]: >>> ✅ Step Passed: Test_Check__Nav
+09-02-2026 15:00:35 [INFO]: >>> ⏳ Step Started: Test_Check__Login
+09-02-2026 15:00:35 [INFO]: >>> 🔐 Starting login flow...
+09-02-2026 15:00:44 [INFO]: >>> ✅ Step Passed: Test_Check__Login
+09-02-2026 15:00:44 [INFO]: >>> ⏳ Step Started: Test_Check__Verify_Data
+09-02-2026 15:00:44 [INFO]: >>> ⏳ Waiting for heavy data to load...
+09-02-2026 15:03:53 [ERROR]: >>> 🚩 RED FLAG at step: [Test_Check__Verify_Data]
+09-02-2026 15:03:54 [INFO]: >>> 🖼️ Screenshot saved: FAIL_Test_Check__Verify_Data_2026-02-09_13-03-53.png
+09-02-2026 15:03:54 [WARN]: >>> 🔕 SIMULATION: Would send email to alert-rizone-automazia@rishonlezion.muni.il,itamara@rishonlezion.muni.il,davidgb@rishonlezion.muni.il,ofirl@rishonlezion.muni.il
+09-02-2026 15:03:54 [WARN]: >>> ⚠️ Target failed: Data validation failed: Expected text not found after full timeout
+09-02-2026 17:00:05 [INFO]: >>> 🚀 Starting RiZone QA Automation
+09-02-2026 17:00:16 [INFO]: >>> 🔄 Checking Prod_Check (prod)
+09-02-2026 17:00:16 [INFO]: >>> ⏳ Step Started: Prod_Check__Nav
+09-02-2026 17:00:21 [INFO]: >>> ✅ Step Passed: Prod_Check__Nav
+09-02-2026 17:00:21 [INFO]: >>> ⏳ Step Started: Prod_Check__Login
+09-02-2026 17:00:21 [INFO]: >>> 🔐 Starting login flow...
+09-02-2026 17:00:30 [INFO]: >>> ✅ Step Passed: Prod_Check__Login
+09-02-2026 17:00:30 [INFO]: >>> ⏳ Step Started: Prod_Check__Verify_Data
+09-02-2026 17:00:30 [INFO]: >>> ⏳ Waiting for heavy data to load...
+09-02-2026 17:00:35 [INFO]: >>> ✅ SUCCESS on Prod_Check
+09-02-2026 17:00:35 [INFO]: >>> ✅ Step Passed: Prod_Check__Verify_Data
+09-02-2026 17:00:35 [INFO]: >>> 🔄 Checking Test_Check (test)
+09-02-2026 17:00:35 [INFO]: >>> ⏳ Step Started: Test_Check__Nav
+09-02-2026 17:00:38 [INFO]: >>> ✅ Step Passed: Test_Check__Nav
+09-02-2026 17:00:38 [INFO]: >>> ⏳ Step Started: Test_Check__Login
+09-02-2026 17:00:38 [INFO]: >>> 🔐 Starting login flow...
+09-02-2026 17:00:47 [INFO]: >>> ✅ Step Passed: Test_Check__Login
+09-02-2026 17:00:47 [INFO]: >>> ⏳ Step Started: Test_Check__Verify_Data
+09-02-2026 17:00:47 [INFO]: >>> ⏳ Waiting for heavy data to load...
+09-02-2026 17:03:59 [ERROR]: >>> 🚩 RED FLAG at step: [Test_Check__Verify_Data]
+09-02-2026 17:03:59 [INFO]: >>> 🖼️ Screenshot saved: FAIL_Test_Check__Verify_Data_2026-02-09_15-03-59.png
+09-02-2026 17:04:00 [INFO]: >>> 📧 Alert email sent. ID: 1-6989f760-92421051c1661588ca7de723
+09-02-2026 17:04:00 [WARN]: >>> ⚠️ Target failed: Data validation failed: Expected text not found after full timeout
+09-02-2026 20:00:47 [INFO]: >>> 🚀 Starting RiZone QA Automation
+09-02-2026 20:01:19 [ERROR]: >>> 💥 Fatal: Timed out after 30000 ms while waiting for the WS endpoint URL to appear in stdout!
