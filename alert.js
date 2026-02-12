@@ -38,7 +38,8 @@ const screenshotsDirectory = path.join(logDirectory, 'screenshots');
 if (!fs.existsSync(logDirectory)) fs.mkdirSync(logDirectory);
 if (!fs.existsSync(screenshotsDirectory)) fs.mkdirSync(screenshotsDirectory);
 
-let CURRENT_ENV = "unknown";
+// הגדרה ל-"system" כדי לתפוס שגיאות Startup בדשבורד
+let CURRENT_ENV = "system";
 const lokiPromises = [];
 
 // --- Logger Setup ---
@@ -163,10 +164,9 @@ async function runStep(page, stepName, action, target) {
         await action();
         logger.info(`>>> ✅ Step Passed: ${stepName}`);
     } catch (error) {
-        logger.error(`>>> 🚩 RED FLAG at step: [${stepName}]`);
+        logger.error(`>>> 🚩 RED FLAG at step: [${stepName}]`); 
         await takeFullScreenshot(page, stepName);
         
-        // שליחת מייל רק אם הכישלון הוא בשלב אימות הנתונים
         if (stepName.includes("Verify_Data") && target) {
             await sendAlertEmail(target, error.message);
         }
@@ -225,11 +225,9 @@ async function handleLogin(page) {
     }
 }
 
-// הפונקציה החדשה והמשודרגת לאימות נתונים
 async function verifyDataStep(page, target) {
     logger.info(`>>> ⏳ Verifying data for ${target.name} (Expect: "${target.expectedText}")...`);
     
-    // המתנה ראשונית לטעינת המבנה הבסיסי
     try {
         await page.waitForFunction(
             () => document.body.innerText.includes("נכסים") || document.body.innerText.includes("שלום"),
@@ -240,23 +238,17 @@ async function verifyDataStep(page, target) {
     }
 
     try {
-        // waitForFunction רץ בתוך הקונטקסט של הדפדפן
         await page.waitForFunction(
             (expected, errors) => {
                 const bodyText = document.body.innerText;
-                
-                // 1. בדיקת הצלחה
                 if (bodyText.includes(expected)) return true;
-                
-                // 2. בדיקת כישלון מהיר (Fail Fast)
                 const foundError = errors.find(err => bodyText.includes(err));
                 if (foundError) {
                     throw new Error(`CRITICAL_PAGE_ERROR: Found fatal text "${foundError}"`);
                 }
-                
-                return false; // עדיין לא נטען, תמשיך לנסות
+                return false;
             },
-            { timeout: TIMEOUT_MS, polling: 1000 }, // בדיקה כל שנייה למשך 3 דקות
+            { timeout: TIMEOUT_MS, polling: 1000 },
             target.expectedText,
             FATAL_ERRORS
         );
@@ -264,21 +256,12 @@ async function verifyDataStep(page, target) {
         logger.info(`>>> ✅ SUCCESS: Data verified on ${target.name}`);
 
     } catch (e) {
-        // ניתוח השגיאה לצורך דיווח ברור
         let failureReason = e.message;
-        let pagePreview = "N/A";
-
-        try {
-            // שליפת קצת טקסט מהדף כדי להבין מה היה שם
-            pagePreview = await page.evaluate(() => document.body.innerText.substring(0, 300).replace(/\n/g, ' '));
-        } catch (err) {}
-
         if (e.message.includes("CRITICAL_PAGE_ERROR")) {
             failureReason = `⛔ Fail Fast Triggered: ${e.message.split(': ')[1]}`;
         } else if (e.message.includes("Timeout")) {
             failureReason = "⏱️ Timeout: Expected data did not appear within 3 minutes.";
         }
-
         throw new Error(failureReason);
     }
 }
@@ -298,9 +281,8 @@ async function verifyDataStep(page, target) {
     try {
         browser = await puppeteer.launch({
             headless: "new",
-            // וודא שהנתיב הזה נכון במחשב שלך!
             executablePath: "C:\\Users\\itamara\\.cache\\puppeteer\\chrome\\win64-143.0.7499.169\\chrome-win64\\chrome.exe",
-            args: ['--no-sandbox', '--window-size=1280,800']
+            args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage', '--window-size=1280,800']
         });
 
         const page = await browser.newPage();
@@ -311,32 +293,29 @@ async function verifyDataStep(page, target) {
             logger.info(`>>> 🔄 Checking ${target.name} (${CURRENT_ENV})`);
 
             try {
-                // שלב 1: ניווט
                 await runStep(page, `${target.name}__Nav`, async () => {
                     await page.goto(target.url, { waitUntil: 'networkidle2', timeout: 60000 });
                 }, target);
 
-                // שלב 2: התחברות
                 await runStep(page, `${target.name}__Login`, async () => {
                     await handleLogin(page);
                 }, target);
 
-                // שלב 3: אימות נתונים (המשודרג)
                 await runStep(page, `${target.name}__Verify_Data`, async () => {
                     await verifyDataStep(page, target);
                 }, target);
 
             } catch (e) {
-                logger.warn(`>>> ⚠️ Target failed: ${e.message}`);
-                // ממשיכים לסביבה הבאה גם אם הנוכחית נכשלה
+                logger.warn(`>>> ⚠️Target failed: ${e.message}`);
             }
         }
     } catch (e) {
-        logger.error(`>>> 💥 Fatal Script Error: ${e.message}`);
+        // שגיאה זו תופיע עכשיו תחת "System Errors" בדשבורד
+        logger.error(`>>> 💥 Fatal Script Error: ${e.message}`); 
     } finally {
+        if (browser) await browser.close().catch(() => {});
         await Promise.all(lokiPromises);
         await sleep(2000);
-        if (browser) await browser.close();
         process.exit(0);
     }
 })();
