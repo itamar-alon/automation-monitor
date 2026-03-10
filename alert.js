@@ -262,13 +262,16 @@ async function verifyDataStep(page, target) {
     }
 
     try {
-        await page.waitForFunction(
+        // התיקון הקריטי: מחזירים אובייקט במקום לזרוק שגיאה בתוך הקונטקסט של הדפדפן
+        const resultHandle = await page.waitForFunction(
             (expected, errors) => {
-                const bodyText = document.body.innerText;
-                if (bodyText.includes(expected)) return true;
-                const foundError = errors.find(err => bodyText.includes(err));
-                if (foundError) {
-                    throw new Error(`CRITICAL_PAGE_ERROR: Found fatal text "${foundError}"`);
+                const bodyText = document.body.innerText || document.body.textContent || "";
+                if (bodyText.includes(expected)) return { success: true };
+                
+                for (const err of errors) {
+                    if (bodyText.includes(err)) {
+                        return { error: err };
+                    }
                 }
                 return false;
             },
@@ -277,15 +280,41 @@ async function verifyDataStep(page, target) {
             FATAL_ERRORS
         );
         
+        const result = await resultHandle.jsonValue();
+
+        if (result.error) {
+            throw new Error(`CRITICAL_PAGE_ERROR: Found fatal text "${result.error}"`);
+        }
+        
         logger.info(`>>> ✅ SUCCESS: Data verified on ${target.name}`);
 
     } catch (e) {
         let failureReason = e.message;
-        if (e.message.includes("CRITICAL_PAGE_ERROR")) {
-            failureReason = `⛔ Fail Fast Triggered: ${e.message.split(': ')[1]}`;
-        } else if (e.message.includes("Timeout")) {
-            failureReason = `⏱️ Timeout: Expected data did not appear within ${TIMEOUT_MS/1000/60} minutes.`;
+        
+        // --- רשת הביטחון: דגימת גיבוי ---
+        // אם הפונקציה למעלה קרסה ממשהו לא צפוי, אנחנו סורקים את המסך באופן ידני פעם אחת אחרונה
+        try {
+            const fallbackCheck = await page.evaluate((errors) => {
+                const text = document.body.innerText || document.body.textContent || "";
+                for (const err of errors) {
+                    if (text.includes(err)) return err;
+                }
+                return null;
+            }, FATAL_ERRORS);
+            
+            if (fallbackCheck) {
+                failureReason = `⛔ Fail Fast Triggered: Found fatal text "${fallbackCheck}"`;
+            }
+        } catch (fallbackErr) {
+            // התעלמות משגיאות בדגימת הגיבוי כדי לא לדרוס את השגיאה המקורית
         }
+
+        if (failureReason.includes("CRITICAL_PAGE_ERROR")) {
+            failureReason = `⛔ Fail Fast Triggered: ${failureReason.split(': ')[1]}`;
+        } else if (!failureReason.includes("⛔ Fail Fast") && (failureReason.includes("Timeout") || failureReason.includes("Waiting failed"))) {
+            failureReason = `⏱️ Timeout: Expected data did not appear within ${TIMEOUT_MS/1000/60} minutes. Original error: ${e.message}`;
+        }
+        
         throw new Error(failureReason);
     }
 }
