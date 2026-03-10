@@ -168,12 +168,15 @@ async function runStep(page, stepName, action, target) {
         await takeFullScreenshot(page, stepName);
         
         if (stepName.includes("Verify_Data") && target) {
-            // הוספת התנאי לשליחת מייל רק אם השגיאה מכילה "אין נתונים"
             if (error.message.includes("אין נתונים")) {
                 await sendAlertEmail(target, error.message);
             } else {
-                logger.info(`>>> 🔕 Email skipped: Alert condition not met (requires 'אין נתונים'). Error: ${error.message}`);
+                // לוג מפורט למה לא נשלח מייל
+                logger.warn(`>>> 🔕 Alert Email Skipped: Error detected but it was NOT 'אין נתונים'. Original error: ${error.message}`);
             }
+        } else if (target) {
+            // לוג לשגיאות בשלבים אחרים (כמו Nav או Login)
+            logger.info(`>>> ℹ️ Step failed outside of data verification. No email sent per configuration.`);
         }
         throw error;
     }
@@ -197,7 +200,6 @@ async function handleLogin(page) {
         );
         await topLoginBtn.click();
         
-        // במקום sleep קשיח, מחכים שהדיאלוג או הטאב יופיעו
         await page.waitForSelector("xpath///button[contains(., 'באמצעות סיסמה')] | input[name='tz']", { timeout: 10000 });
 
         try {
@@ -219,23 +221,25 @@ async function handleLogin(page) {
         await clickViaJS(page, submitBtn);
 
         logger.info(">>> ⏳ Waiting for login to complete...");
-        await Promise.all([
-            page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 45000 }).catch(() => {}),
-            page.waitForFunction(() => !document.querySelector('.MuiDialog-container'), { timeout: 20000 }).catch(() => {})
-        ]);
-
-        // בדיקה אם קיימת הודעת שגיאה בחלון ההתחברות
-        const loginErrorMsg = await page.evaluate(() => {
-            const errorElement = document.querySelector('.MuiDialog-container');
-            if (errorElement && (errorElement.innerText.includes('אינו מזוהה') || errorElement.innerText.includes('שגוי'))) {
-                return true;
+        
+        const loginOutcome = await Promise.race([
+            page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 45000 }).then(() => 'success'),
+            page.waitForFunction(() => {
+                const errorElement = document.querySelector('.MuiDialog-container');
+                return errorElement && (errorElement.innerText.includes('אינו מזוהה') || errorElement.innerText.includes('שגוי'));
+            }, { timeout: 45000 }).then(() => 'error')
+        ]).catch(e => {
+            if (e.message.includes('Execution context was destroyed') || e.message.includes('Target closed')) {
+                return 'success';
             }
-            return false;
+            throw e;
         });
 
-        if (loginErrorMsg) {
+        if (loginOutcome === 'error') {
             throw new Error("LOGIN_FAILED: פרטי ההתחברות אינם מזוהים או שגויים.");
         }
+
+        await page.waitForFunction(() => !document.querySelector('.MuiDialog-container'), { timeout: 10000 }).catch(() => {});
 
         logger.info(">>> ✅ Login process completed");
 
@@ -249,7 +253,6 @@ async function verifyDataStep(page, target) {
     logger.info(`>>> ⏳ Verifying data for ${target.name} (Expect: "${target.expectedText}")...`);
     
     try {
-        // שלב מקדים כדי לוודא שהשלד של האתר עלה
         await page.waitForFunction(
             () => document.body.innerText.includes("נכסים") || document.body.innerText.includes("שלום") || document.body.innerText.includes("תשלומים"),
             { timeout: 60000 }
@@ -259,7 +262,6 @@ async function verifyDataStep(page, target) {
     }
 
     try {
-        // בדיקת התוכן הסופי - כאן נכנס הטיימאאוט ה-"חכם"
         await page.waitForFunction(
             (expected, errors) => {
                 const bodyText = document.body.innerText;
@@ -270,7 +272,7 @@ async function verifyDataStep(page, target) {
                 }
                 return false;
             },
-            { timeout: TIMEOUT_MS, polling: 2000 }, // פולינג כל 2 שניות כדי להוריד עומס מה-CPU
+            { timeout: TIMEOUT_MS, polling: 2000 },
             target.expectedText,
             FATAL_ERRORS
         );
@@ -291,7 +293,6 @@ async function verifyDataStep(page, target) {
 // --- Main Execution ---
 
 (async () => {
-    // Safety Kill Switch after 20 mins
     setTimeout(() => { 
         logger.error(">>> ☠️ Process stuck too long. Force killing.");
         process.exit(1); 
@@ -332,7 +333,6 @@ async function verifyDataStep(page, target) {
             }
         }
     } catch (e) {
-        // שגיאה זו תופיע עכשיו תחת "System Errors" בדשבורד
         logger.error(`>>> 💥 Fatal Script Error: ${e.message}`); 
     } finally {
         if (browser) await browser.close().catch(() => {});
