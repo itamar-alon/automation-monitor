@@ -10,10 +10,10 @@ const { execSync } = require('child_process');
 const SEND_EMAIL = true;
 const ID = process.env.USER_ID;
 const PASS = process.env.USER_PASS;
-const TIMEOUT_MS = 180000; // 3 דקות המתנה לנתונים
+const TIMEOUT_MS = 300000; // הוגדל ל-5 דקות - חכם: ממשיך מיד כשהנתונים עולים
 
 // מילים שמעידות על כישלון קריטי בדף (Fail Fast)
-const FATAL_ERRORS = ["שגיאת שרת", "תקלה בטעינה", "Error 500", "System Unavailable", "התרחשה שגיאה", "Exception"];
+const FATAL_ERRORS = ["שגיאת שרת", "תקלה בטעינה", "Error 500", "System Unavailable", "התרחשה שגיאה", "Exception", "אין נתונים"];
 
 const TARGETS = [
     {
@@ -168,7 +168,12 @@ async function runStep(page, stepName, action, target) {
         await takeFullScreenshot(page, stepName);
         
         if (stepName.includes("Verify_Data") && target) {
-            await sendAlertEmail(target, error.message);
+            // הוספת התנאי לשליחת מייל רק אם השגיאה מכילה "אין נתונים"
+            if (error.message.includes("אין נתונים")) {
+                await sendAlertEmail(target, error.message);
+            } else {
+                logger.info(`>>> 🔕 Email skipped: Alert condition not met (requires 'אין נתונים'). Error: ${error.message}`);
+            }
         }
         throw error;
     }
@@ -191,12 +196,14 @@ async function handleLogin(page) {
             { timeout: 20000 }
         );
         await topLoginBtn.click();
-        await sleep(2000);
+        
+        // במקום sleep קשיח, מחכים שהדיאלוג או הטאב יופיעו
+        await page.waitForSelector("xpath///button[contains(., 'באמצעות סיסמה')] | input[name='tz']", { timeout: 10000 });
 
         try {
             const passwordTab = await page.waitForSelector("xpath///button[contains(., 'באמצעות סיסמה')]", { visible: true, timeout: 5000 });
             await clickViaJS(page, passwordTab);
-            await sleep(1000);
+            await page.waitForSelector('input[name="password"]', { visible: true, timeout: 5000 });
         } catch (e) {
             logger.info(">>> ℹ️ Password tab not found or already selected, proceeding...");
         }
@@ -213,9 +220,22 @@ async function handleLogin(page) {
 
         logger.info(">>> ⏳ Waiting for login to complete...");
         await Promise.all([
-            page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 30000 }).catch(() => {}),
-            page.waitForFunction(() => !document.querySelector('.MuiDialog-container'), { timeout: 15000 }).catch(() => {})
+            page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 45000 }).catch(() => {}),
+            page.waitForFunction(() => !document.querySelector('.MuiDialog-container'), { timeout: 20000 }).catch(() => {})
         ]);
+
+        // בדיקה אם קיימת הודעת שגיאה בחלון ההתחברות
+        const loginErrorMsg = await page.evaluate(() => {
+            const errorElement = document.querySelector('.MuiDialog-container');
+            if (errorElement && (errorElement.innerText.includes('אינו מזוהה') || errorElement.innerText.includes('שגוי'))) {
+                return true;
+            }
+            return false;
+        });
+
+        if (loginErrorMsg) {
+            throw new Error("LOGIN_FAILED: פרטי ההתחברות אינם מזוהים או שגויים.");
+        }
 
         logger.info(">>> ✅ Login process completed");
 
@@ -229,8 +249,9 @@ async function verifyDataStep(page, target) {
     logger.info(`>>> ⏳ Verifying data for ${target.name} (Expect: "${target.expectedText}")...`);
     
     try {
+        // שלב מקדים כדי לוודא שהשלד של האתר עלה
         await page.waitForFunction(
-            () => document.body.innerText.includes("נכסים") || document.body.innerText.includes("שלום"),
+            () => document.body.innerText.includes("נכסים") || document.body.innerText.includes("שלום") || document.body.innerText.includes("תשלומים"),
             { timeout: 60000 }
         );
     } catch (e) {
@@ -238,6 +259,7 @@ async function verifyDataStep(page, target) {
     }
 
     try {
+        // בדיקת התוכן הסופי - כאן נכנס הטיימאאוט ה-"חכם"
         await page.waitForFunction(
             (expected, errors) => {
                 const bodyText = document.body.innerText;
@@ -248,7 +270,7 @@ async function verifyDataStep(page, target) {
                 }
                 return false;
             },
-            { timeout: TIMEOUT_MS, polling: 1000 },
+            { timeout: TIMEOUT_MS, polling: 2000 }, // פולינג כל 2 שניות כדי להוריד עומס מה-CPU
             target.expectedText,
             FATAL_ERRORS
         );
@@ -260,7 +282,7 @@ async function verifyDataStep(page, target) {
         if (e.message.includes("CRITICAL_PAGE_ERROR")) {
             failureReason = `⛔ Fail Fast Triggered: ${e.message.split(': ')[1]}`;
         } else if (e.message.includes("Timeout")) {
-            failureReason = "⏱️ Timeout: Expected data did not appear within 3 minutes.";
+            failureReason = `⏱️ Timeout: Expected data did not appear within ${TIMEOUT_MS/1000/60} minutes.`;
         }
         throw new Error(failureReason);
     }
@@ -294,7 +316,7 @@ async function verifyDataStep(page, target) {
 
             try {
                 await runStep(page, `${target.name}__Nav`, async () => {
-                    await page.goto(target.url, { waitUntil: 'networkidle2', timeout: 60000 });
+                    await page.goto(target.url, { waitUntil: 'networkidle2', timeout: 90000 });
                 }, target);
 
                 await runStep(page, `${target.name}__Login`, async () => {
