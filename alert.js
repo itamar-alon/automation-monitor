@@ -6,13 +6,11 @@ const winston = require('winston');
 const DailyRotateFile = require('winston-daily-rotate-file');
 const { execSync } = require('child_process');
 
-// --- Configuration ---
 const SEND_EMAIL = true;
 const ID = process.env.USER_ID;
 const PASS = process.env.USER_PASS;
-const TIMEOUT_MS = 300000; // הוגדל ל-5 דקות - חכם: ממשיך מיד כשהנתונים עולים
+const TIMEOUT_MS = 300000; 
 
-// מילים שמעידות על כישלון קריטי בדף (Fail Fast)
 const FATAL_ERRORS = ["שגיאת שרת", "תקלה בטעינה", "Error 500", "System Unavailable", "התרחשה שגיאה", "Exception", "אין נתונים"];
 
 const TARGETS = [
@@ -38,11 +36,9 @@ const screenshotsDirectory = path.join(logDirectory, 'screenshots');
 if (!fs.existsSync(logDirectory)) fs.mkdirSync(logDirectory);
 if (!fs.existsSync(screenshotsDirectory)) fs.mkdirSync(screenshotsDirectory);
 
-// הגדרה ל-"system" כדי לתפוס שגיאות Startup בדשבורד
 let CURRENT_ENV = "system";
 const lokiPromises = [];
 
-// --- Logger Setup ---
 const logger = winston.createLogger({
     level: 'info',
     format: winston.format.combine(
@@ -55,7 +51,16 @@ const logger = winston.createLogger({
     ]
 });
 
-// --- Helper Functions ---
+function cleanPuppeteerZombies() {
+    try {
+        logger.info(">>> 🧹 Running Smart Cleanup...");
+        const cmd = `powershell "Get-CimInstance Win32_Process -Filter 'Name = \\"chrome.exe\\"' | Where-Object { $_.CommandLine -like '*--user-data-dir=*puppeteer_dev_profile*' } | ForEach-Object { Stop-Process -Id $_.ProcessId -Force }"`;
+        execSync(cmd);
+        logger.info(">>> ✅ Cleanup complete.");
+    } catch (e) {}
+}
+
+cleanPuppeteerZombies();
 
 async function sendAlertEmail(target, errorMessage) {
     if (!SEND_EMAIL) {
@@ -130,15 +135,6 @@ logger.on('data', (log) => {
     lokiPromises.push(sendToLoki(log.level, log.message, CURRENT_ENV));
 });
 
-// Clean up old chrome processes
-try {
-    const processList = execSync('tasklist /FI "IMAGENAME eq chrome.exe" /FO CSV /NH').toString();
-    if (processList.includes("chrome.exe")) {
-        execSync('taskkill /F /IM chrome.exe /T');
-        logger.info(">>> 🧹 Cleanup: Zombies killed.");
-    }
-} catch (e) {}
-
 async function takeFullScreenshot(page, stepName) {
     try {
         const timestamp = new Date().toISOString().replace(/T/, '_').replace(/:/g, '-').split('.')[0];
@@ -171,12 +167,8 @@ async function runStep(page, stepName, action, target) {
             if (error.message.includes("אין נתונים")) {
                 await sendAlertEmail(target, error.message);
             } else {
-                // לוג מפורט למה לא נשלח מייל
-                logger.warn(`>>> 🔕 Alert Email Skipped: Error detected but it was NOT 'אין נתונים'. Original error: ${error.message}`);
+                logger.warn(`>>> 🔕 Alert Email Skipped: ${error.message}`);
             }
-        } else if (target) {
-            // לוג לשגיאות בשלבים אחרים (כמו Nav או Login)
-            logger.info(`>>> ℹ️ Step failed outside of data verification. No email sent per configuration.`);
         }
         throw error;
     }
@@ -188,17 +180,47 @@ async function clickViaJS(page, element) {
     await page.evaluate(el => el.click(), element);
 }
 
-// --- Logic Functions ---
-
-async function handleLogin(page) {
+async function handleLogin(page, envAuthPath) {
     try {
         logger.info(">>> 🔐 Starting login flow...");
 
-        const topLoginBtn = await page.waitForSelector(
-            "xpath///button[contains(., 'כניסה') or contains(., 'התחברות')] | //a[contains(., 'כניסה') or contains(., 'התחברות')]",
-            { timeout: 20000 }
-        );
-        await topLoginBtn.click();
+        let needsLogin = false;
+        try {
+            await page.waitForSelector(
+                "xpath///button[contains(., 'כניסה') or contains(., 'התחברות')] | //a[contains(., 'כניסה') or contains(., 'התחברות')]",
+                { timeout: 5000 }
+            );
+            needsLogin = true;
+        } catch (e) {
+            needsLogin = false;
+        }
+
+        if (!needsLogin) {
+            logger.info(">>> ✅ Session restored from cookies.");
+            return;
+        }
+
+        try {
+            const cookieBtn = await page.waitForSelector("xpath///button[contains(., 'מאשר הכל')]", { timeout: 3000, visible: true });
+            await clickViaJS(page, cookieBtn);
+            await sleep(500);
+        } catch (e) {}
+
+        let clickedPrivacyBtn = false;
+        try {
+            const privacyLoginBtn = await page.waitForSelector("xpath///button[contains(., 'התחברות')]", { timeout: 3000, visible: true });
+            await clickViaJS(page, privacyLoginBtn);
+            clickedPrivacyBtn = true;
+            await sleep(1000);
+        } catch (e) {}
+
+        if (!clickedPrivacyBtn) {
+            const topLoginBtn = await page.waitForSelector(
+                "xpath///button[contains(., 'כניסה') or contains(., 'התחברות')] | //a[contains(., 'כניסה') or contains(., 'התחברות')]",
+                { timeout: 20000 }
+            );
+            await topLoginBtn.click();
+        }
         
         await page.waitForSelector("xpath///button[contains(., 'באמצעות סיסמה')] | input[name='tz']", { timeout: 10000 });
 
@@ -206,9 +228,7 @@ async function handleLogin(page) {
             const passwordTab = await page.waitForSelector("xpath///button[contains(., 'באמצעות סיסמה')]", { visible: true, timeout: 5000 });
             await clickViaJS(page, passwordTab);
             await page.waitForSelector('input[name="password"]', { visible: true, timeout: 5000 });
-        } catch (e) {
-            logger.info(">>> ℹ️ Password tab not found or already selected, proceeding...");
-        }
+        } catch (e) {}
 
         await page.waitForSelector('input[name="password"]', { visible: true, timeout: 10000 });
         const tzInput = await page.waitForSelector('input[name="tz"]');
@@ -220,8 +240,6 @@ async function handleLogin(page) {
         const submitBtn = await page.waitForSelector("xpath///div[contains(@class, 'MuiDialog')]//button[contains(., 'כניסה')]");
         await clickViaJS(page, submitBtn);
 
-        logger.info(">>> ⏳ Waiting for login to complete...");
-        
         const loginOutcome = await Promise.race([
             page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 45000 }).then(() => 'success'),
             page.waitForFunction(() => {
@@ -229,19 +247,18 @@ async function handleLogin(page) {
                 return errorElement && (errorElement.innerText.includes('אינו מזוהה') || errorElement.innerText.includes('שגוי'));
             }, { timeout: 45000 }).then(() => 'error')
         ]).catch(e => {
-            if (e.message.includes('Execution context was destroyed') || e.message.includes('Target closed')) {
-                return 'success';
-            }
+            if (e.message.includes('Execution context was destroyed') || e.message.includes('Target closed')) return 'success';
             throw e;
         });
 
-        if (loginOutcome === 'error') {
-            throw new Error("LOGIN_FAILED: פרטי ההתחברות אינם מזוהים או שגויים.");
-        }
+        if (loginOutcome === 'error') throw new Error("LOGIN_FAILED");
 
         await page.waitForFunction(() => !document.querySelector('.MuiDialog-container'), { timeout: 10000 }).catch(() => {});
-
-        logger.info(">>> ✅ Login process completed");
+        
+        await sleep(2000); 
+        const cookies = await page.cookies();
+        fs.writeFileSync(envAuthPath, JSON.stringify(cookies));
+        logger.info(`>>> 💾 Cookies saved.`);
 
     } catch (e) {
         logger.error(`>>> ❌ Login Failed: ${e.message}`);
@@ -250,28 +267,22 @@ async function handleLogin(page) {
 }
 
 async function verifyDataStep(page, target) {
-    logger.info(`>>> ⏳ Verifying data for ${target.name} (Expect: "${target.expectedText}")...`);
+    logger.info(`>>> ⏳ Verifying data for ${target.name}...`);
     
     try {
         await page.waitForFunction(
             () => document.body.innerText.includes("נכסים") || document.body.innerText.includes("שלום") || document.body.innerText.includes("תשלומים"),
             { timeout: 60000 }
         );
-    } catch (e) {
-        logger.warn(">>> ⚠️ Dashboard structure slow to load, proceeding to strict check...");
-    }
+    } catch (e) {}
 
     try {
-        // התיקון הקריטי: מחזירים אובייקט במקום לזרוק שגיאה בתוך הקונטקסט של הדפדפן
         const resultHandle = await page.waitForFunction(
             (expected, errors) => {
                 const bodyText = document.body.innerText || document.body.textContent || "";
                 if (bodyText.includes(expected)) return { success: true };
-                
                 for (const err of errors) {
-                    if (bodyText.includes(err)) {
-                        return { error: err };
-                    }
+                    if (bodyText.includes(err)) return { error: err };
                 }
                 return false;
             },
@@ -281,18 +292,12 @@ async function verifyDataStep(page, target) {
         );
         
         const result = await resultHandle.jsonValue();
-
-        if (result.error) {
-            throw new Error(`CRITICAL_PAGE_ERROR: Found fatal text "${result.error}"`);
-        }
+        if (result.error) throw new Error(`CRITICAL_PAGE_ERROR: ${result.error}`);
         
-        logger.info(`>>> ✅ SUCCESS: Data verified on ${target.name}`);
+        logger.info(`>>> ✅ SUCCESS: ${target.name}`);
 
     } catch (e) {
         let failureReason = e.message;
-        
-        // --- רשת הביטחון: דגימת גיבוי ---
-        // אם הפונקציה למעלה קרסה ממשהו לא צפוי, אנחנו סורקים את המסך באופן ידני פעם אחת אחרונה
         try {
             const fallbackCheck = await page.evaluate((errors) => {
                 const text = document.body.innerText || document.body.textContent || "";
@@ -301,29 +306,15 @@ async function verifyDataStep(page, target) {
                 }
                 return null;
             }, FATAL_ERRORS);
-            
-            if (fallbackCheck) {
-                failureReason = `⛔ Fail Fast Triggered: Found fatal text "${fallbackCheck}"`;
-            }
-        } catch (fallbackErr) {
-            // התעלמות משגיאות בדגימת הגיבוי כדי לא לדרוס את השגיאה המקורית
-        }
-
-        if (failureReason.includes("CRITICAL_PAGE_ERROR")) {
-            failureReason = `⛔ Fail Fast Triggered: ${failureReason.split(': ')[1]}`;
-        } else if (!failureReason.includes("⛔ Fail Fast") && (failureReason.includes("Timeout") || failureReason.includes("Waiting failed"))) {
-            failureReason = `⏱️ Timeout: Expected data did not appear within ${TIMEOUT_MS/1000/60} minutes. Original error: ${e.message}`;
-        }
-        
+            if (fallbackCheck) failureReason = `⛔ Fail Fast: ${fallbackCheck}`;
+        } catch (fallbackErr) {}
         throw new Error(failureReason);
     }
 }
 
-// --- Main Execution ---
-
 (async () => {
     setTimeout(() => { 
-        logger.error(">>> ☠️ Process stuck too long. Force killing.");
+        logger.error(">>> ☠️ Force killing.");
         process.exit(1); 
     }, 20 * 60 * 1000);
 
@@ -334,7 +325,13 @@ async function verifyDataStep(page, target) {
         browser = await puppeteer.launch({
             headless: "new",
             executablePath: "C:\\Users\\itamara\\.cache\\puppeteer\\chrome\\win64-143.0.7499.169\\chrome-win64\\chrome.exe",
-            args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage', '--window-size=1280,800']
+            args: [
+                '--no-sandbox', 
+                '--disable-setuid-sandbox', 
+                '--disable-dev-shm-usage', 
+                '--window-size=1280,800',
+                '--user-data-dir=C:\\temp\\puppeteer_dev_profile' 
+            ]
         });
 
         const page = await browser.newPage();
@@ -342,15 +339,25 @@ async function verifyDataStep(page, target) {
 
         for (const target of TARGETS) {
             CURRENT_ENV = target.env;
-            logger.info(`>>> 🔄 Checking ${target.name} (${CURRENT_ENV})`);
+            logger.info(`>>> 🔄 Checking ${target.name}`);
+            
+            const envAuthPath = path.join(__dirname, `auth_state_${target.env}.json`);
 
             try {
+                const client = await page.target().createCDPSession();
+                await client.send('Network.clearBrowserCookies'); 
+
+                if (fs.existsSync(envAuthPath)) {
+                    const cookies = JSON.parse(fs.readFileSync(envAuthPath));
+                    if (cookies.length > 0) await page.setCookie(...cookies);
+                }
+
                 await runStep(page, `${target.name}__Nav`, async () => {
                     await page.goto(target.url, { waitUntil: 'networkidle2', timeout: 90000 });
                 }, target);
 
                 await runStep(page, `${target.name}__Login`, async () => {
-                    await handleLogin(page);
+                    await handleLogin(page, envAuthPath);
                 }, target);
 
                 await runStep(page, `${target.name}__Verify_Data`, async () => {
@@ -358,11 +365,11 @@ async function verifyDataStep(page, target) {
                 }, target);
 
             } catch (e) {
-                logger.warn(`>>> ⚠️Target failed: ${e.message}`);
+                logger.warn(`>>> ⚠️ Target failed: ${e.message}`);
             }
         }
     } catch (e) {
-        logger.error(`>>> 💥 Fatal Script Error: ${e.message}`); 
+        logger.error(`>>> 💥 Fatal: ${e.message}`); 
     } finally {
         if (browser) await browser.close().catch(() => {});
         await Promise.all(lokiPromises);

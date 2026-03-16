@@ -6,31 +6,6 @@
     "auditLog": "C:\\Rizone\\Projects\\nitur\\logs\\.57e21221f6b3a69668ff16b4f8c0c431b207b487-audit.json",
     "files": [
         {
-            "date": 1771999207443,
-            "name": "C:\\Rizone\\Projects\\nitur\\logs\\rishon-app-2026-02-25.log",
-            "hash": "6265be059bdbd00b4f3f3210408cb7944f5abf65f3da1575b629d8e9159c178f"
-        },
-        {
-            "date": 1772085607935,
-            "name": "C:\\Rizone\\Projects\\nitur\\logs\\rishon-app-2026-02-26.log",
-            "hash": "e280dcabd9c3929fae96a595d290775585618eaec588c2a42260f1b3428dedd1"
-        },
-        {
-            "date": 1772172008770,
-            "name": "C:\\Rizone\\Projects\\nitur\\logs\\rishon-app-2026-02-27.log",
-            "hash": "a95b1287b9d0f50741580bbee5b1a2cee29d1179ecc547610ea73c5c19a613b0"
-        },
-        {
-            "date": 1772258407595,
-            "name": "C:\\Rizone\\Projects\\nitur\\logs\\rishon-app-2026-02-28.log",
-            "hash": "00f923be0c6935c24504789cbc7528bef2408158371a14a56ecac33057de3474"
-        },
-        {
-            "date": 1772344807954,
-            "name": "C:\\Rizone\\Projects\\nitur\\logs\\rishon-app-2026-03-01.log",
-            "hash": "f1749ae35cd954bb231d30ab3055fb7dede118741aac81eed83d5bdebec8aa70"
-        },
-        {
             "date": 1772431207628,
             "name": "C:\\Rizone\\Projects\\nitur\\logs\\rishon-app-2026-03-02.log",
             "hash": "9d0a6592ed60f6e07100888cd534656c2e1418de7a8dfdd3dad8f3312ea63593"
@@ -74,6 +49,36 @@
             "date": 1773122409188,
             "name": "C:\\Rizone\\Projects\\nitur\\logs\\rishon-app-2026-03-10.log",
             "hash": "df03a395ca581c77b88c63f213ef920e4a56bf8b706d7457a4aede59ac5accb8"
+        },
+        {
+            "date": 1773208809637,
+            "name": "C:\\Rizone\\Projects\\nitur\\logs\\rishon-app-2026-03-11.log",
+            "hash": "18b4c8e8d24155da56cd94225d3d3668427f997df928cdad580a141275ac0d74"
+        },
+        {
+            "date": 1773295208091,
+            "name": "C:\\Rizone\\Projects\\nitur\\logs\\rishon-app-2026-03-12.log",
+            "hash": "15b95717f6ab0b80500084b57006109fe14d453f5a60c861f4e5d94516e6623d"
+        },
+        {
+            "date": 1773381609524,
+            "name": "C:\\Rizone\\Projects\\nitur\\logs\\rishon-app-2026-03-13.log",
+            "hash": "5447519e79d05ba51dc348ae644fbb12cc6b767f0034c7babf6edf35ec0b9c14"
+        },
+        {
+            "date": 1773468008013,
+            "name": "C:\\Rizone\\Projects\\nitur\\logs\\rishon-app-2026-03-14.log",
+            "hash": "d09c04ba855936126ac00bc46ef1a908bcf3cb9d965438ed064a761347d98523"
+        },
+        {
+            "date": 1773554408572,
+            "name": "C:\\Rizone\\Projects\\nitur\\logs\\rishon-app-2026-03-15.log",
+            "hash": "7c681d3fc680503fab042dcdbc4ea932c64d6f5ad42a0a6fcba725eb8c61a5ae"
+        },
+        {
+            "date": 1773640807205,
+            "name": "C:\\Rizone\\Projects\\nitur\\logs\\rishon-app-2026-03-16.log",
+            "hash": "7d1a87e005266fb1b918a863c80ccbbe63f270b0644cea136b148bffc6fdb3f0"
         }
     ],
     "hashType": "sha256"
