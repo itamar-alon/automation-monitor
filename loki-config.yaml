@@ -36,7 +36,6 @@ storage_config:
   filesystem:
     directory: C:/Loki/data/chunks
 
-# הסעיף שגרם לקריסה אצלך - וודא שהוא מצביע ל-C
 ruler:
   storage:
     type: local

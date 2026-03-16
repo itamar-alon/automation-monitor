@@ -9,3 +9,5 @@ node_modules/
 .envnodejs/ 
 *.exe 
 .env
+auth_state_prod.json
+auth_state_test.json
