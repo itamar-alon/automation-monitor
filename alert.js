@@ -141,13 +141,7 @@ async function takeFullScreenshot(page, stepName) {
         const fileName = `FAIL_${stepName}_${timestamp}.png`;
         const filePath = path.join(screenshotsDirectory, fileName);
 
-        const bodyHandle = await page.$('body');
-        const boundingBox = await bodyHandle.boundingBox();
-        const fullHeight = Math.ceil(boundingBox ? boundingBox.height : 800);
-
-        await page.setViewport({ width: 1920, height: fullHeight });
-        await page.screenshot({ path: filePath });
-        await bodyHandle.dispose();
+        await page.screenshot({ path: filePath, fullPage: false }); 
         logger.info(`>>> 🖼️ Screenshot saved: ${fileName}`);
     } catch (e) {
         logger.error(`>>> ⚠️ Screenshot failed: ${e.message}`);
@@ -232,10 +226,10 @@ async function handleLogin(page, envAuthPath) {
 
         await page.waitForSelector('input[name="password"]', { visible: true, timeout: 10000 });
         const tzInput = await page.waitForSelector('input[name="tz"]');
-        await tzInput.type(ID, { delay: 50 });
+        await tzInput.type(ID, { delay: 20 }); 
 
         const passInput = await page.waitForSelector('input[name="password"]');
-        await passInput.type(PASS, { delay: 50 });
+        await passInput.type(PASS, { delay: 20 });
 
         const submitBtn = await page.waitForSelector("xpath///div[contains(@class, 'MuiDialog')]//button[contains(., 'כניסה')]");
         await clickViaJS(page, submitBtn);
@@ -255,7 +249,7 @@ async function handleLogin(page, envAuthPath) {
 
         await page.waitForFunction(() => !document.querySelector('.MuiDialog-container'), { timeout: 10000 }).catch(() => {});
         
-        await sleep(2000); 
+        await sleep(1000); 
         const cookies = await page.cookies();
         fs.writeFileSync(envAuthPath, JSON.stringify(cookies));
         logger.info(`>>> 💾 Cookies saved.`);
@@ -280,9 +274,16 @@ async function verifyDataStep(page, target) {
         const resultHandle = await page.waitForFunction(
             (expected, errors) => {
                 const bodyText = document.body.innerText || document.body.textContent || "";
+                
                 if (bodyText.includes(expected)) return { success: true };
+                
                 for (const err of errors) {
-                    if (bodyText.includes(err)) return { error: err };
+                    if (bodyText.includes(err)) {
+
+                        if (err === "אין נתונים") continue;
+                        
+                        return { error: err };
+                    }
                 }
                 return false;
             },
@@ -298,6 +299,8 @@ async function verifyDataStep(page, target) {
 
     } catch (e) {
         let failureReason = e.message;
+        
+
         try {
             const fallbackCheck = await page.evaluate((errors) => {
                 const text = document.body.innerText || document.body.textContent || "";
@@ -306,8 +309,14 @@ async function verifyDataStep(page, target) {
                 }
                 return null;
             }, FATAL_ERRORS);
-            if (fallbackCheck) failureReason = `⛔ Fail Fast: ${fallbackCheck}`;
+            
+            if (fallbackCheck) {
+                failureReason = fallbackCheck;
+            } else if (e.name === 'TimeoutError' || e.message.includes('Timeout')) {
+                failureReason = `לא נמצאו הנתונים המצופים (${target.expectedText}) לאחר המתנה של ${TIMEOUT_MS / 1000} שניות.`;
+            }
         } catch (fallbackErr) {}
+        
         throw new Error(failureReason);
     }
 }
@@ -329,12 +338,33 @@ async function verifyDataStep(page, target) {
                 '--no-sandbox', 
                 '--disable-setuid-sandbox', 
                 '--disable-dev-shm-usage', 
+                '--disable-gpu',
+                '--disable-extensions',
+                '--disable-background-timer-throttling',
+                '--disable-backgrounding-occluded-windows',
+                '--disable-renderer-backgrounding',
                 '--window-size=1280,800',
                 '--user-data-dir=C:\\temp\\puppeteer_dev_profile' 
             ]
         });
 
         const page = await browser.newPage();
+        
+        await page.setRequestInterception(true);
+        page.on('request', (req) => {
+            const resourceType = req.resourceType();
+            const url = req.url();
+
+            if (['image', 'font', 'media'].includes(resourceType) || 
+                url.includes('google-analytics') || 
+                url.includes('facebook') || 
+                url.includes('hotjar')) {
+                req.abort();
+            } else {
+                req.continue();
+            }
+        });
+
         await page.setViewport({ width: 1280, height: 800 });
 
         for (const target of TARGETS) {
