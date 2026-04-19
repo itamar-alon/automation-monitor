@@ -38,43 +38,38 @@ An automated monitoring and data integrity system for municipal portals. This pr
 git clone [https://github.com/itamar-alon/automation-monitor.git](https://github.com/itamar-alon/automation-monitor.git)
 cd automation-monitor
 npm install
+
+
 2. Environment Setup
 Create a .env file in the root directory:
-
-
-קטע קוד
 USER_ID=your_id
 USER_PASS=your_password
 COURIER_API_KEY=your_api_key
 MY_EMAIL=your_e[Email Address]sage
+
+3. Usage
 Run the monitor locally:
-
-
 Bash
 node alert.js
+
+
 Setup Loki Logging:
-
-
 Bash
 .\loki-windows-amd64.exe --config.file=loki-config.yaml
+
+
 Run with Docker:
-
-
 Bash
 docker-compose up -d
 🖥 Server Deployment (Internal)
+
 For running on the organization's monitoring server:
-
-
 Navigate to the network drive: pushd \\grafana\Rizone\Projects\nitur
-
 
 Ensure the environment variables are configured in the system's global secrets.
 
-
 🤖 GitHub Actions
 The project is configured to run on a schedule. Secrets (USER_ID, COURIER_API_KEY, etc.) must be added to the repository under Settings > Secrets and variables > Actions.
-
 
 📄 License
 Internal project for municipal monitoring purposes.
