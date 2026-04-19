@@ -1,0 +1,3 @@
+python-logging-loki
+requests
+python-dotenv
