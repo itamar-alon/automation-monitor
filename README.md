@@ -24,11 +24,8 @@ An automated monitoring and data integrity system for municipal portals. This pr
 - **Data Integrity Validation**: Scrapes and verifies specific data fields against expected values.
 - **Real-time Alerting**: Sends instant notifications via **Courier API** if discrepancies or failures are detected.
 - **24/7 Monitoring**: Fully automated via **GitHub Actions** and local server deployments.
-<img width="1390" height="682" alt="image" src="https://github.com/user-attachments/assets/f09d84a8-103a-406c-bb18-2ce92c1eeaf1" />
-
-
 - **Log Aggregation**: Integrated with **Loki** for advanced log analysis in **Grafana**.
-
+<img width="1390" height="682" alt="image" src="https://github.com/user-attachments/assets/f09d84a8-103a-406c-bb18-2ce92c1eeaf1" />
 
 ## 🚀 Getting Started
 
